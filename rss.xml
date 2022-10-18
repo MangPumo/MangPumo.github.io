@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title></title>
+        <subtitle>真正的大师永远都怀着一颗学徒的心</subtitle>
+        <icon>https://mangpumo.github.io/images/favicon.ico</icon>
+        <link>https://MangPumo.github.io</link>
+        <author>
+          <name>Mang Pumo</name>
+        </author>
+        <description>欢迎来到 Mang Pumo 的个人博客!</description>
+        <language>zh-CN</language>
+        <pubDate>Mon, 17 Oct 2022 13:58:51 +0800</pubDate>
+        <lastBuildDate>Mon, 17 Oct 2022 13:58:51 +0800</lastBuildDate>
+        <item>
+            <guid isPermalink="true">https://mangpumo.github.io/2022/10/17/CTF%E5%AF%86%E7%A0%81%E5%AD%A6%E6%96%B9%E5%90%91%E5%B8%B8%E7%94%A8%E5%AF%86%E7%A0%81%E7%9B%AE%E5%BD%95/</guid>
+            <title>CTF密码学方向常用密码目录</title>
+            <link>https://mangpumo.github.io/2022/10/17/CTF%E5%AF%86%E7%A0%81%E5%AD%A6%E6%96%B9%E5%90%91%E5%B8%B8%E7%94%A8%E5%AF%86%E7%A0%81%E7%9B%AE%E5%BD%95/</link>
+            <pubDate>Mon, 17 Oct 2022 13:58:51 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;这是标题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#这是标题&#34;&gt;#&lt;/a&gt; 这是标题&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;本篇博客将列举 CTF 中常用密码集供参考&lt;/strong&gt;&lt;br&gt;
+ &amp;lt;br /&amp;gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;常见编码&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;ASCII 编码&lt;br&gt;
+ shellcode 编码&lt;br&gt;
+ Quoted-printable 编码&lt;br&gt;
+ XXencode 编码&lt;br&gt;
+ URL 编码&lt;br&gt;
+ Unicode 编码&lt;br&gt;
+ Escape/Unescape 编码&lt;br&gt;
+ HTML 实体编码&lt;br&gt;
+ MD5 算法&lt;br&gt;
+敲击码（Tap code)&lt;br&gt;
+ 摩尔斯电码（Morse Code)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;换位加密&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;栅栏密码（Rail-fence Cipher)&lt;br&gt;
+ 曲路密码（Curve Cipher)&lt;br&gt;
+ 列移位密码（Columnar Transposition Cipher)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;替换加密&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;埃特巴什码（Atbash Cipher)&lt;br&gt;
+ 凯撒密码（Caesar Cipher)&lt;br&gt;
+ROT/13/18/47&lt;br&gt;
+ 简单换位密码（Simple Substitution Cipher)&lt;br&gt;
+ 希尔密码 (Hill Cipher)&lt;br&gt;
+ 猪圈密码 (Pigpen Cipher)&lt;br&gt;
+ 波利比奥斯方阵密码（Polybius Square Cipher)&lt;br&gt;
+ 夏多密码 (曲折加密)&lt;br&gt;
+ 普莱菲尔密码（Playfair Cipher)&lt;br&gt;
+ 维吉尼亚密码（Vigenere Cipher)&lt;br&gt;
+ 自动密钥密码 (Autokey Cipher)&lt;br&gt;
+ 博福特密码 (Beaufort Cipher)&lt;br&gt;
+ 滚动密钥密码（Running Key Cipher)&lt;br&gt;
+ Porta 密码 (Porta Cipher)&lt;br&gt;
+ 同音替换密码（Homophoic Substitution Cipher)&lt;br&gt;
+ 仿射密码（Affine Cipher)&lt;br&gt;
+ 培根密码（Baconian Cipher)&lt;br&gt;
+ ADFGX 和 ADFGVX 密码（ADFG/VX Cipher)&lt;br&gt;
+ 双密码 (Bifid Cipher)&lt;br&gt;
+ 三分密码（Trifid Cipher)&lt;br&gt;
+ 四方密码（Four-Square Cipher)&lt;br&gt;
+ 棋盘密码（Checkerboard Cipher)&lt;br&gt;
+ 跨棋盘密码（Straddle Checkerboard Cipher)&lt;br&gt;
+ 分组摩尔斯替换密码（Fractionated Morse Cipher)&lt;br&gt;
+ Bazeries 密码（Bazeries Cipher)&lt;br&gt;
+ Digrafid 密码（Digrafid Cipher)&lt;br&gt;
+ 格朗普雷密码（Grandpre Cipher)&lt;br&gt;
+ 盲文密码（Blind Cipher)&lt;br&gt;
+ 键盘密码（Keyboard Cipher)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;代码混淆加密&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;asp 混淆加密&lt;br&gt;
+ php 混淆加密&lt;br&gt;
+ css/js 混淆加密&lt;br&gt;
+ VBScript.Encode 混淆加密&lt;br&gt;
+ ppencode&lt;br&gt;
+rrencode&lt;br&gt;
+jjencode/aaencode&lt;br&gt;
+JSfuck&lt;br&gt;
+jother&lt;br&gt;
+branfuck&lt;br&gt;
+uuencode&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">https://mangpumo.github.io/2022/10/16/hello-world/</guid>
+            <title>Hello World</title>
+            <link>https://mangpumo.github.io/2022/10/16/hello-world/</link>
+            <pubDate>Sun, 16 Oct 2022 09:57:15 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;Welcome to &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9oZXhvLmlvLw==&#34;&gt;Hexo&lt;/span&gt;! This is your very first post. Check &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9oZXhvLmlvL2RvY3Mv&#34;&gt;documentation&lt;/span&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9oZXhvLmlvL2RvY3MvdHJvdWJsZXNob290aW5nLmh0bWw=&#34;&gt;troubleshooting&lt;/span&gt; or you can ask me on &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL2hleG9qcy9oZXhvL2lzc3Vlcw==&#34;&gt;GitHub&lt;/span&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;quick-start&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#quick-start&#34;&gt;#&lt;/a&gt; Quick Start&lt;/h2&gt;
+&lt;h3 id=&#34;create-a-new-post&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#create-a-new-post&#34;&gt;#&lt;/a&gt; Create a new post&lt;/h3&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;$ hexo new &lt;span class=&#34;string&#34;&gt;&amp;quot;My New Post&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;More info: &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvd3JpdGluZy5odG1s&#34;&gt;Writing&lt;/span&gt;&lt;/p&gt;
+&lt;h3 id=&#34;run-server&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#run-server&#34;&gt;#&lt;/a&gt; Run server&lt;/h3&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;$ hexo server&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;More info: &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvc2VydmVyLmh0bWw=&#34;&gt;Server&lt;/span&gt;&lt;/p&gt;
+&lt;h3 id=&#34;generate-static-files&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#generate-static-files&#34;&gt;#&lt;/a&gt; Generate static files&lt;/h3&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;$ hexo generate&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;More info: &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9oZXhvLmlvL2RvY3MvZ2VuZXJhdGluZy5odG1s&#34;&gt;Generating&lt;/span&gt;&lt;/p&gt;
+&lt;h3 id=&#34;deploy-to-remote-sites&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#deploy-to-remote-sites&#34;&gt;#&lt;/a&gt; Deploy to remote sites&lt;/h3&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;$ hexo deploy&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;More info: &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvb25lLWNvbW1hbmQtZGVwbG95bWVudC5odG1s&#34;&gt;Deployment&lt;/span&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>
