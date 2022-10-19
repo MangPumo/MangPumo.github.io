@@ -10,8 +10,48 @@
         </author>
         <description>欢迎来到 Mang Pumo 的个人博客!</description>
         <language>zh-CN</language>
-        <pubDate>Mon, 17 Oct 2022 13:58:51 +0800</pubDate>
-        <lastBuildDate>Mon, 17 Oct 2022 13:58:51 +0800</lastBuildDate>
+        <pubDate>Wed, 19 Oct 2022 10:17:51 +0800</pubDate>
+        <lastBuildDate>Wed, 19 Oct 2022 10:17:51 +0800</lastBuildDate>
+        <item>
+            <guid isPermalink="true">https://mangpumo.github.io/2022/10/19/C%E8%AF%AD%E8%A8%80_%E8%BE%97%E8%BD%AC%E7%9B%B8%E9%99%A4%E6%B3%95%E6%B1%82%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0/</guid>
+            <title>C语言_辗转相除法两种方式两个用处</title>
+            <link>https://mangpumo.github.io/2022/10/19/C%E8%AF%AD%E8%A8%80_%E8%BE%97%E8%BD%AC%E7%9B%B8%E9%99%A4%E6%B3%95%E6%B1%82%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0/</link>
+            <pubDate>Wed, 19 Oct 2022 10:17:51 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;辗转相除法&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#辗转相除法&#34;&gt;#&lt;/a&gt; 辗转相除法&lt;/h1&gt;
+&lt;h2 id=&#34;原理&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#原理&#34;&gt;#&lt;/a&gt; 原理&lt;/h2&gt;
+&lt;p&gt;辗转相除法，被称为欧几里得（Euclidean）算法，是求最大公约数的算法。&lt;/p&gt;
+&lt;h2 id=&#34;证明&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#证明&#34;&gt;#&lt;/a&gt; 证明&lt;/h2&gt;
+&lt;p&gt;设 b = aq + r， (a,b) 为 a，b 的最大公约数。&lt;br&gt;
+则 a % (a,b) = 0; b % (a,b) = 0,&lt;br&gt;
+ 因为 (a 和 b 的约数) % (a,b) = 0,&lt;br&gt;
+ 所以 (b - aq) % (a,b) = 0&lt;br&gt;
+ 即 r % (a,b) = 0&lt;br&gt;
+ 因为 a % (a,b) = 0, r % (a,b) = 0&lt;br&gt;
+ 所以 (a,r) % (a,b) = 0 (最大公约数一定被公约数整除）&lt;br&gt;
+又因为 a % (a,r) = 0, r % (a,r) = 0, b = aq+r&lt;br&gt;
+ 所以 (aq + r) % (a,r) = 0&lt;br&gt;
+ 即 b % （a,r) = 0&lt;br&gt;
+ 因为 a % （a,r) = 0&lt;br&gt;
+b % (a,r) = 0&lt;br&gt;
+ 所以&lt;br&gt;
+ (a,b) % (a,r) = 0&lt;br&gt;
+ 所以&lt;br&gt;
+ (a,b) = (a,r)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;证明过程来自百度，大体了解即可！&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;具体做法&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#具体做法&#34;&gt;#&lt;/a&gt; 具体做法&lt;/h2&gt;
+&lt;p&gt;用较小数除较大数，再用出现的余数（第一余数）去除除数，再用出现的余数（第二余数）去除第一余数，如此反复，直到最后余数是 0 为止。最后的除数即为两个数的最大公约数。&lt;/p&gt;
+&lt;h2 id=&#34;代码实现&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#代码实现&#34;&gt;#&lt;/a&gt; 代码实现&lt;/h2&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;long long int GCD(long long int n,long long int m)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    long long int t;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    if(n&amp;lt;m)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        t=n,n=m,m=t;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    while(t=n%m,t&amp;gt;0)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        n=m;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        m=t;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    return m;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br&gt;
+&lt;strong&gt; 自写 GCD 函数&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;进阶实现递归&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#进阶实现递归&#34;&gt;#&lt;/a&gt; 进阶实现（递归）&lt;/h2&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;int GCD(int x,int y)//公因数 &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    if(y==0)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	return x;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    else &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	return GCD(y,x%y);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br&gt;
+&lt;strong&gt; 通过递归精简代码&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;辗转相除法求最小公倍数&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#辗转相除法求最小公倍数&#34;&gt;#&lt;/a&gt; 辗转相除法求最小公倍数&lt;/h2&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;ans = a*b/m;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br&gt;
+ 其中 ans 为最小公倍数，a,b 为输入的两个数，m 为两个数字的最大公因数。&lt;br&gt;
+&lt;strong&gt;原理很简单，两个数的最小公倍数等于两个数的乘积除以最大公约数（证明过程略）。&lt;/strong&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">https://mangpumo.github.io/2022/10/17/CTF_%E5%AF%86%E7%A0%81%E5%AD%A6%E6%96%B9%E5%90%91%E5%B8%B8%E7%94%A8%E5%AF%86%E7%A0%81%E7%9B%AE%E5%BD%95/</guid>
             <title>CTF_密码学方向常用密码目录</title>
