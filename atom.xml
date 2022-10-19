@@ -10,12 +10,11 @@
     </author>
     <updated>2022-10-17T05:58:51.000Z</updated>
     <entry>
-        <id>https://mangpumo.github.io/2022/10/17/CTF%E5%AF%86%E7%A0%81%E5%AD%A6%E6%96%B9%E5%90%91%E5%B8%B8%E7%94%A8%E5%AF%86%E7%A0%81%E7%9B%AE%E5%BD%95/</id>
-        <title>CTF密码学方向常用密码目录</title>
-        <link rel="alternate" href="https://mangpumo.github.io/2022/10/17/CTF%E5%AF%86%E7%A0%81%E5%AD%A6%E6%96%B9%E5%90%91%E5%B8%B8%E7%94%A8%E5%AF%86%E7%A0%81%E7%9B%AE%E5%BD%95/"/>
-        <content type="html">&lt;h1 id=&#34;这是标题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#这是标题&#34;&gt;#&lt;/a&gt; 这是标题&lt;/h1&gt;
-&lt;p&gt;&lt;strong&gt;本篇博客将列举 CTF 中常用密码集供参考&lt;/strong&gt;&lt;br&gt;
- &amp;lt;br /&amp;gt;&lt;/p&gt;
+        <id>https://mangpumo.github.io/2022/10/17/CTF_%E5%AF%86%E7%A0%81%E5%AD%A6%E6%96%B9%E5%90%91%E5%B8%B8%E7%94%A8%E5%AF%86%E7%A0%81%E7%9B%AE%E5%BD%95/</id>
+        <title>CTF_密码学方向常用密码目录</title>
+        <link rel="alternate" href="https://mangpumo.github.io/2022/10/17/CTF_%E5%AF%86%E7%A0%81%E5%AD%A6%E6%96%B9%E5%90%91%E5%B8%B8%E7%94%A8%E5%AF%86%E7%A0%81%E7%9B%AE%E5%BD%95/"/>
+        <content type="html">&lt;h1 id=&#34;ctf密码学&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#ctf密码学&#34;&gt;#&lt;/a&gt; CTF 密码学&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;本篇博客将列举 CTF 中常用密码供参考&lt;/strong&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;常见编码&lt;/p&gt;
 &lt;blockquote&gt;
