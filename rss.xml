@@ -10,8 +10,60 @@
         </author>
         <description>欢迎来到 Mang Pumo 的个人博客!</description>
         <language>zh-CN</language>
-        <pubDate>Thu, 20 Oct 2022 10:25:46 +0800</pubDate>
-        <lastBuildDate>Thu, 20 Oct 2022 10:25:46 +0800</lastBuildDate>
+        <pubDate>Thu, 20 Oct 2022 14:38:38 +0800</pubDate>
+        <lastBuildDate>Thu, 20 Oct 2022 14:38:38 +0800</lastBuildDate>
+        <item>
+            <guid isPermalink="true">https://mangpumo.github.io/2022/10/20/C%E8%AF%AD%E8%A8%80_%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E7%9A%84%E5%AE%9A%E4%B9%89%E3%80%81%E5%88%9D%E5%A7%8B%E5%8C%96%E5%92%8C%E8%BE%93%E5%87%BA/</guid>
+            <title>C语言_二维数组的定义、初始化和输出</title>
+            <link>https://mangpumo.github.io/2022/10/20/C%E8%AF%AD%E8%A8%80_%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E7%9A%84%E5%AE%9A%E4%B9%89%E3%80%81%E5%88%9D%E5%A7%8B%E5%8C%96%E5%92%8C%E8%BE%93%E5%87%BA/</link>
+            <pubDate>Thu, 20 Oct 2022 14:38:38 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;二维数组的定义&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#二维数组的定义&#34;&gt;#&lt;/a&gt; 二维数组的定义&lt;/h1&gt;
+&lt;p&gt;二维数组定义的一般形式为：&lt;br&gt;
+&lt;strong&gt;类型说明符 数组名 [常量表达式][ 常量表达式];&lt;/strong&gt;&lt;br&gt;
+eg： int a[3][4]；&lt;/p&gt;
+&lt;p&gt;表示定义了一个 3×4，即 3 行 4 列总共有 12 个元素的数组 a。这 12 个元素的名字依次是：a [0][0]、a [0][1]、a [0][2]、a [0][3]；a [1][0]、a [1][1]、a [1][2]、a [1][3]；a [2][0]、a [2][1]、a [2][2]、a [2][3]。&lt;/p&gt;
+&lt;p&gt;与一维数组一样，行序号和列序号的下标都是从 0 开始的。元素 a [i][j] 表示第 i+1 行、第 j+1 列的元素。数组 int a [m][n] 最大范围处的元素是 a [m–1][n–1]。所以在引用数组元素时应该注意，下标值应在定义的数组大小的范围内。&lt;/p&gt;
+&lt;p&gt;此外，与一维数组一样，定义数组时用到的 “数组名 [常量表达式][常量表达式]” 和引用数组元素时用到的 “数组名 [下标][下标]” 是有区别的。前者是定义一个数组，以及该数组的维数和各维的大小。而后者仅仅是元素的下标，像坐标一样，对应一个具体的元素。&lt;/p&gt;
+&lt;p&gt;C 语言对二维数组采用这样的定义方式，使得二维数组可被看作一种特殊的一维数组，即它的元素为一维数组。比如 “int a [3][4]；” 可以看作有三个元素，每个元素都为一个长度为 4 的一维数组。而且 a [0]、a [2]、a [3] 分别是这三个一维数组的数组名。下面来验证一下看看是不是这么回事儿:&lt;br&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;# include &amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;int main(void)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    int a[3][4] = &amp;#123;&amp;#123;1, 2, 3, 4&amp;#125;, &amp;#123;5, 6, 7, 8&amp;#125;, &amp;#123;9, 10, 11, 12&amp;#125;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    printf(&amp;quot;%d\n&amp;quot;, sizeof(a[0]));&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    return 0;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br&gt;
+ 输出结果为：&lt;br&gt;
+&lt;strong&gt;16&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;可见 a [0] 确实是第一行一维数组的数组名，其他同理。&lt;/p&gt;
+&lt;p&gt;在 C 语言中，二维数组中元素排列的顺序是按行存放的，即在内存中先顺序存放第一行的元素，再存放第二行的元素，这样依次存放。&lt;/p&gt;
+&lt;h1 id=&#34;二维数组的初始化&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#二维数组的初始化&#34;&gt;#&lt;/a&gt; 二维数组的初始化&lt;/h1&gt;
+&lt;p&gt;可以用下面的方法对二维数组进行初始化。&lt;/p&gt;
+&lt;h2 id=&#34;1-分行给二维数组赋初值比如上面程序的赋值方法&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1-分行给二维数组赋初值比如上面程序的赋值方法&#34;&gt;#&lt;/a&gt; 1) 分行给二维数组赋初值，比如上面程序的赋值方法：&lt;/h2&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;int a[3][4] = &amp;#123;&amp;#123;1, 2, 3, 4&amp;#125;, &amp;#123;5, 6, 7, 8&amp;#125;, &amp;#123;9, 10, 11, 12&amp;#125;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br&gt;
+ 这种赋初值的方法比较直观，将第一个花括号内的数据赋给第一行的元素、第二个花括号内的数据赋给第二行的元素…… 即每行看作一个元素，按行赋初值。&lt;/p&gt;
+&lt;h2 id=&#34;2-也可以将所有数据写在一个花括号内按数组排列的顺序对各元素赋初值&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2-也可以将所有数据写在一个花括号内按数组排列的顺序对各元素赋初值&#34;&gt;#&lt;/a&gt; 2) 也可以将所有数据写在一个花括号内，按数组排列的顺序对各元素赋初值。&lt;/h2&gt;
+&lt;p&gt;比如：&lt;br&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;int a[3][4] = &amp;#123;1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br&gt;
+ 效果与第 1 种是一样的。但第 1 种方法更好，一行对一行，界限清楚。第 2 种方法如果数据多，写成一大片，容易遗漏，也不易检查。&lt;/p&gt;
+&lt;h2 id=&#34;3-也可以只对部分元素赋初值&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#3-也可以只对部分元素赋初值&#34;&gt;#&lt;/a&gt; 3) 也可以只对部分元素赋初值。&lt;/h2&gt;
+&lt;p&gt;比如：&lt;br&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;int a[3][4] = &amp;#123;&amp;#123;1, 2&amp;#125;, &amp;#123;5&amp;#125;, &amp;#123;9&amp;#125;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br&gt;
+ 它的作用是对第一行的前两个元素赋值、第二行和第三行的第一个元素赋值。其余元素自动为 0。初始化后数组各元素为：&lt;br&gt;
+1    2    0    0&lt;br&gt;
+5    0    0    0&lt;br&gt;
+9    0    0    0&lt;/p&gt;
+&lt;h2 id=&#34;4-如果在定义数组时就对全部元素赋初值即完全初始化则第一维的长度可以不指定但第二维的长度不能省&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#4-如果在定义数组时就对全部元素赋初值即完全初始化则第一维的长度可以不指定但第二维的长度不能省&#34;&gt;#&lt;/a&gt; 4) 如果在定义数组时就对全部元素赋初值，即完全初始化，则第一维的长度可以不指定，但第二维的长度不能省。&lt;/h2&gt;
+&lt;p&gt;比如：&lt;br&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;int a[3][4] = &amp;#123;1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br&gt;
+ 等价于：&lt;br&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;int a[][4] = &amp;#123;1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br&gt;
+ 系统会根据数据总数和第二维的长度算出第一维的长度。但这种省略的写法几乎不用，因为可读性差。&lt;/p&gt;
+&lt;h2 id=&#34;5-int-a340&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#5-int-a340&#34;&gt;#&lt;/a&gt; 5) int a[3][4]={0}；&lt;/h2&gt;
+&lt;p&gt;二维数组 “清零”，里面每一个元素都是零。&lt;/p&gt;
+&lt;h1 id=&#34;二维数组如何输出&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#二维数组如何输出&#34;&gt;#&lt;/a&gt; 二维数组如何输出&lt;/h1&gt;
+&lt;p&gt;二维数组有行和列，那么如何输出里面的元素呢？在讲述一维数组的时候说过，“数组的元素只能一个一个输出”，二维数组也不例外。在一维数组中是用一个 for 循环进行输出，而二维数组元素的输出要使用两个 for 循环嵌套。&lt;br&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;# include &amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;int main(void)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    int a[3][4] = &amp;#123;&amp;#123;1, 2, 3, 4&amp;#125;, &amp;#123;5, 6, 7, 8&amp;#125;, &amp;#123;9, 10, 11, 12&amp;#125;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    int i;  //行循环变量&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    int j;  //列循环变量&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    for (i=0; i&amp;lt;3; ++i)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        for (j=0; j&amp;lt;4; ++j)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            printf(&amp;quot;%-2d\x20&amp;quot;, a[i][j]);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        printf(&amp;quot;\n&amp;quot;);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    return 0;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br&gt;
+ 输出结果是：&lt;br&gt;
+1  2  3  4&lt;br&gt;
+5  6  7  8&lt;br&gt;
+9  10 11 12&lt;br&gt;
+ 提示：“printf（&amp;quot;%-2d\x20&amp;quot;，a [i][j]）；” 中的 “%-2d”，其中 “-” 表示左对齐，如果不写 “-” 则默认表示右对齐；“2” 表示这个元素输出时占两个空格的空间，所以连同后面的 \x20 则每个元素输出时都占三个空格的空间。&lt;/p&gt;
+ ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">https://mangpumo.github.io/2022/10/20/C%E8%AF%AD%E8%A8%80-%E7%B4%A0%E6%95%B0%E7%AD%9B%E6%B3%95/</guid>
             <title>C语言_素数筛法</title>
