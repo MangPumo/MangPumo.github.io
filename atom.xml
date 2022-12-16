@@ -208,13 +208,6 @@ atoi (&amp;quot;#123&amp;quot;);   // 返回 0&lt;/p&gt;
         <updated>2022-12-15T08:34:39.000Z</updated>
     </entry>
     <entry>
-        <id>https://mangpumo.github.io/2022/12/15/%E5%B8%B8%E7%94%A8%E7%9A%84%E5%87%BD%E6%95%B0/</id>
-        <title>常用的函数</title>
-        <link rel="alternate" href="https://mangpumo.github.io/2022/12/15/%E5%B8%B8%E7%94%A8%E7%9A%84%E5%87%BD%E6%95%B0/"/>
-        <content type="html"></content>
-        <updated>2022-12-15T08:34:08.000Z</updated>
-    </entry>
-    <entry>
         <id>https://mangpumo.github.io/2022/12/15/C%E8%AF%AD%E8%A8%80%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%8EC-string%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%9B%B8%E4%BA%92%E8%BD%AC%E6%8D%A2/</id>
         <title>C语言字符串与C++string对象的相互转换</title>
         <link rel="alternate" href="https://mangpumo.github.io/2022/12/15/C%E8%AF%AD%E8%A8%80%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%8EC-string%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%9B%B8%E4%BA%92%E8%BD%AC%E6%8D%A2/"/>
@@ -598,5 +591,78 @@ ldb（load balance detector）&lt;/p&gt;
 &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tLzN4cDEwaXQveGNkbg==&#34;&gt;https://github.com/3xp10it/xcdn&lt;/span&gt;&lt;/p&gt;
 </content>
         <updated>2022-12-12T16:22:31.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://mangpumo.github.io/2022/12/12/KALI-CMS%E6%8C%87%E7%BA%B9%E8%AF%86%E5%88%AB/</id>
+        <title>KALI_CMS指纹识别</title>
+        <link rel="alternate" href="https://mangpumo.github.io/2022/12/12/KALI-CMS%E6%8C%87%E7%BA%B9%E8%AF%86%E5%88%AB/"/>
+        <content type="html">&lt;h1 id=&#34;cms指纹识别&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#cms指纹识别&#34;&gt;#&lt;/a&gt; CMS 指纹识别&lt;/h1&gt;
+&lt;h2 id=&#34;什么是指纹识别&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#什么是指纹识别&#34;&gt;#&lt;/a&gt; 什么是指纹识别？&lt;/h2&gt;
+&lt;h3 id=&#34;什么是指纹识别-2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#什么是指纹识别-2&#34;&gt;#&lt;/a&gt; 什么是指纹识别？&lt;/h3&gt;
+&lt;p&gt;通过&lt;strong&gt;关键特征&lt;/strong&gt;，识别出目标的 CMS 系统、服务&lt;br&gt;
+器、开发语言、操作系统、CDN、WAF 的类别&lt;br&gt;
+版本等等&lt;/p&gt;
+&lt;h3 id=&#34;识别对象&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#识别对象&#34;&gt;#&lt;/a&gt; 识别对象&lt;/h3&gt;
+&lt;p&gt;1、CMS 信息：比如 Discuz、织梦、帝国 CMS、PHPCMS、ECshop 等；&lt;br&gt;
+2、前端技术：比如 HTML5、jquery、bootstrap、Vue、ace 等；&lt;br&gt;
+3、开发语言：比如 PHP、Java、Ruby、Python、C# 等；&lt;br&gt;
+4、Web 服务器：比如 Apache、 Nginx、IIS、lighttpd 等；&lt;br&gt;
+5、应用服务器：比如 Tomcat、Jboss、Weblogic、Websphere 等；&lt;br&gt;
+6、操作系统信息：比如 Linux、win2k8、win7、Kali、Centos 等；&lt;br&gt;
+7、CDN 信息：是否使用 CDN，如 cloudflare、帝联、蓝讯、网宿、七&lt;br&gt;
+牛云、阿里云等；&lt;br&gt;
+8、WAF 信息：是否使用 WAF，如 D 盾、云锁、宝塔、安全狗、360 等&lt;/p&gt;
+&lt;h2 id=&#34;cms指纹识别-2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#cms指纹识别-2&#34;&gt;#&lt;/a&gt; CMS 指纹识别&lt;/h2&gt;
+&lt;h3 id=&#34;cms怎么来的&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#cms怎么来的&#34;&gt;#&lt;/a&gt; CMS 怎么来的？&lt;/h3&gt;
+&lt;p&gt;内容管理系统&lt;br&gt;
+ Content Management System&lt;br&gt;
+ 如果你要搭建一个论坛……&lt;/p&gt;
+&lt;h3 id=&#34;cms包括什么&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#cms包括什么&#34;&gt;#&lt;/a&gt; CMS 包括什么？&lt;/h3&gt;
+&lt;p&gt;博客（比如 CSDN、博客园）、微博、团购网&lt;br&gt;
+站、导航网站（hao123）、信息分类（58）、&lt;br&gt;
+问答网站（知乎）、商城、百科…… 企业官网、学校官网、医院官网……&lt;/p&gt;
+&lt;h3 id=&#34;主流开源cms&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#主流开源cms&#34;&gt;#&lt;/a&gt; 主流（开源）CMS&lt;/h3&gt;
+&lt;p&gt;DISCUZ、PHPWIND、DEDECMS、WORDPRESS 等&lt;/p&gt;
+&lt;h3 id=&#34;各类网站开源cms&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#各类网站开源cms&#34;&gt;#&lt;/a&gt; 各类网站开源 CMS&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;企业建站系统：MetInfo (米拓)、蝉知、SiteServer CMS 等；&lt;/li&gt;
+&lt;li&gt;B2C 商城系统：商派 Shopex、ECshop、HiShop、XpShop 等；&lt;/li&gt;
+&lt;li&gt;门户建站系统：DedeCMS (织梦)、帝国 CMS、PHPCMS、动易、&lt;br&gt;
+CmsTop 等；&lt;/li&gt;
+&lt;li&gt;博客系统：WordPress、Z-Blog 等；&lt;/li&gt;
+&lt;li&gt;论坛社区：Discuz、PHPwind、WeCenter 等；&lt;/li&gt;
+&lt;li&gt;问答系统：Tipask、whatsns 等；&lt;/li&gt;
+&lt;li&gt;知识百科系统：HDwiki;&lt;/li&gt;
+&lt;li&gt;B2B 门户系统：Destoon、B2Bbuilder、友邻 B2B 等；&lt;/li&gt;
+&lt;li&gt;人才招聘网站系统：骑士 CMS、PHP 云人才管理系统；&lt;/li&gt;
+&lt;li&gt;房产网站系统：FangCms 等；&lt;/li&gt;
+&lt;li&gt;在线教育建站系统：Kesion、EduSoho;&lt;/li&gt;
+&lt;li&gt;电影网站系统：苹果 CMS、ctcms、movcms 等；&lt;/li&gt;
+&lt;li&gt;小说文学建站系统：杰奇 CMS;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;cms识别思路&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#cms识别思路&#34;&gt;#&lt;/a&gt; CMS 识别思路&lt;/h2&gt;
+&lt;h3 id=&#34;cms指纹识别思路&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#cms指纹识别思路&#34;&gt;#&lt;/a&gt; CMS 指纹识别思路&lt;/h3&gt;
+&lt;p&gt;版权信息&lt;br&gt;
+特定文件 MD5 值&lt;br&gt;
+查看网页源代码&lt;br&gt;
+通过特定文件分析（例如 robots.txt）&lt;br&gt;
+……&lt;/p&gt;
+&lt;h2 id=&#34;cms识别工具&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#cms识别工具&#34;&gt;#&lt;/a&gt; CMS 识别工具&lt;/h2&gt;
+&lt;h3 id=&#34;kali自带工具&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#kali自带工具&#34;&gt;#&lt;/a&gt; kali 自带工具&lt;/h3&gt;
+&lt;p&gt;whatweb&lt;br&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;例句&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; whatweb -v discuz.net&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h3 id=&#34;浏览器插件&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#浏览器插件&#34;&gt;#&lt;/a&gt; 浏览器插件&lt;/h3&gt;
+&lt;p&gt;Wappalyzer：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly93d3cud2FwcGFseXplci5jb20=&#34;&gt;https://www.wappalyzer.com&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;whatruns ：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly93d3cud2hhdHJ1bnMuY29tLw==&#34;&gt;https://www.whatruns.com/&lt;/span&gt;&lt;/p&gt;
+&lt;h3 id=&#34;在线网站&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#在线网站&#34;&gt;#&lt;/a&gt; 在线网站&lt;/h3&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL3doYXR3ZWIuYnVnc2NhbmVyLmNvbQ==&#34;&gt;http://whatweb.bugscaner.com&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL2Zpbmdlci50aWRlc2VjLmNvbS8=&#34;&gt;http://finger.tidesec.com/&lt;/span&gt;&lt;/p&gt;
+&lt;h3 id=&#34;离线网站&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#离线网站&#34;&gt;#&lt;/a&gt; 离线网站&lt;/h3&gt;
+&lt;p&gt;御剑指纹扫描器（&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL3huLS1kdzJhdDl4Lk5FVA==&#34;&gt;需要.NET&lt;/span&gt; Framework）&lt;/p&gt;
+&lt;p&gt;Test404 轻量 CMS 指纹识别 v2.1&lt;/p&gt;
+&lt;h3 id=&#34;其他开源程序&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#其他开源程序&#34;&gt;#&lt;/a&gt; 其他开源程序&lt;/h3&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL1R1aGluc2h1YmhyYS9DTVNlZUs=&#34;&gt;https://github.com/Tuhinshubhra/CMSeeK&lt;/span&gt;  （非常详细）&lt;/p&gt;
+</content>
+        <updated>2022-12-12T15:52:38.000Z</updated>
     </entry>
 </feed>
